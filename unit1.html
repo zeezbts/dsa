@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Structure Terminology</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; background-color: #f8f9fa; color: #212529; max-width: 800px; margin: 20px auto; padding: 20px; }
+        h1 { color: #0f4c81; border-bottom: 3px solid #0f4c81; padding-bottom: 10px; font-size: 28px; }
+        h2 { color: #1d2d44; font-size: 20px; margin-top: 30px; display: flex; align-items: center; gap: 10px; }
+        ul { padding-left: 20px; margin: 10px 0; }
+        li { margin-bottom: 8px; }
+        .example { display: block; font-style: italic; color: #6c757d; margin-left: 15px; }
+    </style>
+</head>
+<body>
+    <h1>Basic Terminology</h1>
+    <h2>Basic Data Units</h2>
+    <ul>
+        <li><strong>Data:</strong> Raw values or sets of values. <span class="example">Example: 24, John Smith, 01/01/2000.</span></li>
+        <li><strong>Data Item:</strong> A single unit of value. <span class="example">Example: A phone number or an address string.</span></li>
+        <li><strong>Group Items:</strong> Data items that can be divided into smaller sub-items. <span class="example">Example: Full Name can be split into First Name and Last Name.</span></li>
+        <li><strong>Elementary Items:</strong> Data items that cannot be divided any further. <span class="example">Example: Employee ID (e.g., E101).</span></li>
+    </ul>
+    <h2>Entities and Properties</h2>
+    <ul>
+        <li><strong>Entity &amp; Attribute:</strong> An entity is an object, and attributes are its specific properties. <span class="example">Example: A Car is the entity; its Color, Model, and Price are the attributes.</span></li>
+        <li><strong>Entity Set:</strong> A collection of similar entities. <span class="example">Example: A group of all cars in a dealership inventory.</span></li>
+    </ul>
+    <h2>Storage Hierarchy</h2>
+    <ul>
+        <li><strong>Field:</strong> A single unit of information representing one attribute. <span class="example">Example: A single cell in a spreadsheet containing the value Red.</span></li>
+        <li><strong>Record:</strong> A complete collection of fields belonging to one specific entity. <span class="example">Example: A single row in a spreadsheet containing one car's ID, Model, and Color.</span></li>
+        <li><strong>File:</strong> A master collection of all related records within an entity set. <span class="example">Example: The entire spreadsheet or database table named Inventory_List.</span></li>
+    </ul>
+        <h2>Classification of Data Structures</h2>
+
+    <p>Data structures can broadly be classified into two main categories:</p>
+
+    <img src="class of ds.png" alt="">
+    <h3>1. Primitive Data Structures</h3>
+    <p>Primitive data structures are the most basic types of data structures provided by programming languages. They include:</p>
+    <ul>
+        <li><strong>Integer:</strong> Whole numbers <span class="example">(e.g., 1, 2, 100).</span></li>
+        <li><strong>Float:</strong> Numbers with decimal points <span class="example">(e.g., 3.14, 0.001).</span></li>
+        <li><strong>Character:</strong> Single characters <span class="example">(e.g., ‘A’, ‘B’).</span></li>
+        <li><strong>Boolean:</strong> Logical values <span class="example">(true or false).</span></li>
+    </ul>
+
+    <h3>Sample Program in C++ (Primitive Data Types)</h3>
+    <pre style="background-color: #0f172a; color: #f8fafc; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; white-space: pre;">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int num = 10;        // Integer
+    float pi = 3.14;     // Float
+    char letter = 'A';   // Character
+    bool isHappy = true; // Boolean
+
+    cout &lt;&lt; "Integer: " &lt;&lt; num &lt;&lt; endl;
+    cout &lt;&lt; "Float: " &lt;&lt; pi &lt;&lt; endl;
+    cout &lt;&lt; "Character: " &lt;&lt; letter &lt;&lt; endl;
+    cout &lt;&lt; "Boolean: " &lt;&lt; isHappy &lt;&lt; endl;
+    
+    return 0;
+}</pre>
+
+    <h3>2. Non-Primitive Data Structures</h3>
+    <p>Non-primitive data structures are more complex and are built using primitive data types. They are further divided into:</p>
+
+    <h4>a. Linear Data Structures</h4>
+    <p>In linear data structures, elements are arranged sequentially, and each element has a unique predecessor and successor (except the first and last elements).</p>
+    <ul>
+        <li><strong>Array:</strong> A collection of elements of the same type, stored in contiguous memory locations.</li>
+        <li><strong>Linked List:</strong> A collection of nodes where each node contains data and a pointer to the next node.</li>
+        <li><strong>Stack:</strong> A collection of elements following the Last In First Out (LIFO) principle.</li>
+        <li><strong>Queue:</strong> A collection of elements following the First In First Out (FIFO) principle.</li>
+    </ul>
+
+    <h3>Sample Program in C++ (Array)</h3>
+    <pre style="background-color: #0f172a; color: #f8fafc; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; white-space: pre;">#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int arr[5] = {1, 2, 3, 4, 5}; // Array of integers
+    
+    cout &lt;&lt; "Array elements:" &lt;&lt; endl;
+    for (int i = 0; i &lt; 5; i++) {
+        cout &lt;&lt; arr[i] &lt;&lt; " ";
+    }
+    cout &lt;&lt; endl;
+    
+    return 0;
+}</pre>
+    <h4>b. Non-Linear Data Structures</h4>
+    <p>Elements are arranged in a hierarchical or interconnected structure rather than sequentially.</p>
+    <ul>
+        <li><strong>Tree:</strong> A hierarchical layout where nodes connect to parent and child nodes.</li>
+        <li><strong>Graph:</strong> A network of nodes (vertices) connected by paths (edges) to show relationships.</li>
+    </ul>
+
+    <h3>Sample Program in C++ (Basic Tree Traversal)</h3>
+    <pre style="background-color: #0f172a; color: #f8fafc; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; white-space: pre;">#include &lt;iostream&gt;
+using namespace std;
+
+struct Node {
+    int data;
+    Node* left;
+    Node* right;
+    Node(int val) {
+        data = val;
+        left = right = nullptr;
+    }
+};
+
+void inOrder(Node* root) {
+    if (root == nullptr) return;
+    inOrder(root-&gt;left);
+    cout &lt;&lt; root-&gt;data &lt;&lt; " ";
+    inOrder(root-&gt;right);
+}
+
+int main() {
+    Node* root = new Node(1);
+    root-&gt;left = new Node(2);
+    root-&gt;right = new Node(3);
+    root-&gt;left-&gt;left = new Node(4);
+    root-&gt;left-&gt;right = new Node(5);
+
+    cout &lt;&lt; "In-order Traversal: ";
+    inOrder(root);
+    cout &lt;&lt; endl;
+    return 0;
+}</pre>
+
+    <h4>c. File Structures</h4>
+    <p>Specialized structures designed for storing, retrieving, and updating data efficiently in secondary storage (e.g., B-trees, hash files).</p>
+
+    <h2>Applications of Data Structures</h2>
+    <ul>
+        <li><strong>Arrays:</strong> Implementing stacks, queues, matrices, tables, and storing uniform datasets.</li>
+        <li><strong>Linked Lists:</strong> Dynamic data storage, implementing stacks, queues, and handling hash table chaining.</li>
+        <li><strong>Trees:</strong> Managing hierarchical layouts like file systems, organization charts, networks, and search dictionaries.</li>
+        <li><strong>Graphs:</strong> Modeling network connections (social, transport, computer) and executing path-finding routing algorithms.</li>
+        <li><strong>Hash Tables:</strong> Quick key-value lookups for associative arrays, caching, and database indexing.</li>
+        <li><strong>Stacks:</strong> Handling undo/redo logic, processing function calls, and parsing mathematical expressions.</li>
+        <li><strong>Queues:</strong> Managing print buffers, processing background task lines, and handling server job scheduling.</li>
+    </ul>
+
+
+</body>
+</html>
