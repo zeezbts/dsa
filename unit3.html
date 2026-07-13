@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Stacks - Data Structures</title>
+
+<div class="container">
+
+    <h1>Understanding the Stack Data Structure</h1>
+    
+    <p>A <strong>Stack</strong> is a linear data structure that follows the <strong>Last-In, First-Out (LIFO)</strong> principle. This means that the element added last to the stack is the first one to be removed, similar to a physical stack of plates.</p>
+<img src="stack.png" alt="" srcset="">
+
+    <h2>Introduction to Stacks</h2>
+    <p>In a stack, all insertion and deletion operations take place at a single end called the <strong>Top</strong>. It is an abstract data type (ADT) commonly used across computer architecture and algorithms to manage temporary data.</p>
+    <ul>
+        <li><strong>LIFO Structure:</strong> Last element inserted is the first element accessed.</li>
+        <li><strong>Dynamic/Static:</strong> Can be fixed size or dynamic depending on the design.</li>
+        <li><strong>Single Pointer:</strong> Tracked entirely via a single reference variable called <code>top</code>.</li>
+    </ul>
+
+    <h2>Operations on a Stack</h2>
+    <p>Whether implemented via arrays or linked lists, standard stacks support these core operations:</p>
+    <ul>
+        <li><strong>Push:</strong> Adds an element to the top of the stack.</li>
+        <li><strong>Pop:</strong> Removes and returns the top element from the stack.</li>
+        <li><strong>Peek/Top:</strong> Returns the top element without removing it from the stack.</li>
+        <li><strong>isEmpty:</strong> Checks if the stack contains zero elements.</li>
+        <li><strong>isFull:</strong> Checks if a fixed-size stack has reached its maximum capacity.</li>
+    </ul>
+
+    <h2>Array Representation of Stacks</h2>
+    <p>An array representation uses a sequential, continuous memory block of fixed size to store data. A counter variable <code>top</code> tracks the index of the highest element.</p>
+
+    <h3>Algorithmic Implementations (Array)</h3>
+    
+    <p><strong>Push Operation:</strong></p>
+    <div class="algo-block">
+        <ol>
+            <li>Check for <strong>Stack Overflow</strong>: If <code>top == MAX_SIZE - 1</code>, the stack is full; abort.</li>
+            <li>Increment the pointer: <code>top = top + 1</code>.</li>
+            <li>Insert data: <code>Stack[top] = value</code>.</li>
+        </ol>
+    </div>
+
+    <p><strong>Pop Operation:</strong></p>
+    <div class="algo-block">
+        <ol>
+            <li>Check for <strong>Stack Underflow</strong>: If <code>top == -1</code>, the stack is empty; abort.</li>
+            <li>Fetch data: <code>value = Stack[top]</code>.</li>
+            <li>Decrement the pointer: <code>top = top - 1</code>.</li>
+            <li>Return <code>value</code>.</li>
+        </ol>
+    </div>
+
+    <h2>Linked Representation of Stacks</h2>
+    <p>A linked representation uses dynamic nodes to build the stack. Each node contains a data field and a pointer field linking to the next node below it. The pointer variable <code>top</code> acts as the head of the list, pointing directly to the topmost node.</p>
+    <ul>
+        <li><strong>No Size Limit:</strong> Grows dynamically during execution without standard overflow errors.</li>
+        <li><strong>Extra Overhead:</strong> Requires extra memory for pointer storage in each node.</li>
+    </ul>
+
+    <h2>Operations on a Linked Stack</h2>
+    <p>In a linked stack, items are inserted and removed from the front of the single linked list to maintain O(1) constant time complexity.</p>
+
+    <h3>Algorithmic Implementations (Linked List)</h3>
+    
+    <p><strong>Push Operation (Linked):</strong></p>
+    <div class="algo-block">
+        <ol>
+            <li>Allocate a new node: <code>newNode = allocate Node</code>.</li>
+            <li>Set data: <code>newNode.data = value</code>.</li>
+            <li>Link new node to current stack: <code>newNode.next = top</code>.</li>
+            <li>Update top pointer: <code>top = newNode</code>.</li>
+        </ol>
+    </div>
+
+    <p><strong>Pop Operation (Linked):</strong></p>
+    <div class="algo-block">
+        <ol>
+            <li>Check for <strong>Stack Underflow</strong>: If <code>top == NULL</code>, the stack is empty; abort.</li>
+            <li>Target top node: <code>tempNode = top</code>.</li>
+            <li>Advance top pointer: <code>top = top.next</code>.</li>
+            <li>Extract data: <code>value = tempNode.data</code>.</li>
+            <li>Free memory: <code>free tempNode</code>.</li>
+            <li>Return <code>value</code>.</li>
+        </ol>
+    </div>
+
+    <h2>Applications of Stacks</h2>
+    <p>Stacks play a vital role in core operating system and software engine functions:</p>
+    <ul>
+        <li><strong>Expression Evaluation & Parsing:</strong> Used by compilers to evaluate prefix, infix, and postfix notations (Polish notations).</li>
+        <li><strong>Syntax Checking:</strong> Verifies balancing pairs of parentheses, braces, and brackets in source code text.</li>
+        <li><strong>Function Call Management:</strong> Stores return addresses and local parameters during nested or recursive functions.</li>
+        <li><strong>Undo/Redo Mechanisms:</strong> Powers back-tracking and historic recovery states inside text editors and web browsers.</li>
+    </ul>
+
+    <h2>Comparison: Array vs. Linked Representation</h2>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Array Representation</th>
+                    <th>Linked Representation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Size</strong></td>
+                    <td>Fixed size defined at declaration</td>
+                    <td>Dynamic size determined at runtime</td>
+                </tr>
+                <tr>
+                    <td><strong>Memory Allocation</strong></td>
+                    <td>Static / Compile-time allocation</td>
+                    <td>Dynamic / Heap allocation at runtime</td>
+                </tr>
+                <tr>
+                    <td><strong>Extra Memory Pointer</strong></td>
+                    <td>No pointer memory required per item</td>
+                    <td>Requires memory for an address pointer per node</td>
+                </tr>
+                <tr>
+                    <td><strong>Errors</strong></td>
+                    <td>Prone to Stack Overflow</td>
+                    <td>Prone to Heap Exhaustion (Out of Memory)</td>
+                </tr>
+                <tr>
+                    <td><strong>Access Speed</strong></td>
+                    <td>Faster due to memory locality</td>
+                    <td>Slightly slower due to pointer traversal</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Queues - Data Structures</title>
+    <style>
+          img {
+  
+  max-width: 100%;
+  height: auto; 
+  object-fit: cover; 
+  display: block; 
+  image-rendering: -webkit-optimize-contrast;
+}
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --bg-color: #f8f9fa;
+            --text-color: #333333;
+            --accent-color: #e67e22; /* Warm orange to differentiate from Stacks */
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin-top: 35px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc-box {
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .toc-title {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .toc-box ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .toc-box li {
+            margin-bottom: 8px;
+        }
+
+        .toc-box li a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .toc-box li a:hover {
+            text-decoration: underline;
+            color: var(--primary-color);
+        }
+
+        code {
+            background-color: #f1f3f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 0.9em;
+            color: #d63384;
+        }
+
+        .algo-block {
+            background-color: #f1f3f5;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            border-radius: 0 4px 4px 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .algo-block ol {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Understanding the Queue Data Structure</h1>
+    
+    <nav class="toc-box">
+        <div class="toc-title">Table of Contents</div>
+        <ul>
+            <li><a href="#intro">1. Introduction to Queues</a></li>
+            <li><a href="#operations">2. Core Operations on a Queue</a></li>
+            <li><a href="#array-rep">3. Array Representation of Queues</a></li>
+            <li><a href="#linked-rep">4. Linked Representation of Queues</a></li>
+            <li><a href="#types">5. Types of Queues</a></li>
+            <li><a href="#applications">6. Applications of Queues</a></li>
+        </ul>
+    </nav>
+
+    <p>A <strong>Queue</strong> is a linear data structure that operates on the <strong>First-In, First-Out (FIFO)</strong> principle. This means that the first element added to the queue will be the very first one to be removed, mimicking a real-world waiting line.</p>
+<img src="queue1.jpg" alt="" srcset="">
+    <h2 id="intro">1. Introduction to Queues</h2>
+    <p>In a queue, data manipulation happens at two distinct boundaries rather than a single end:</p>
+    <ul>
+        <li><strong>Rear (Tail):</strong> The point where new elements are inserted into the structure.</li>
+        <li><strong>Front (Head):</strong> The point where existing elements are accessed and deleted.</li>
+    </ul>
+
+    <h2 id="operations">2. Core Operations on a Queue</h2>
+    <p>Regardless of its underlying code implementation, every standard queue relies on these fundamental operations:</p>
+    <ul>
+        <li><strong>Enqueue:</strong> Adds an element to the rear of the queue.</li>
+        <li><strong>Dequeue:</strong> Removes and returns the element located at the front of the queue.</li>
+        <li><strong>Peek/Front:</strong> Inspects the front element without altering the data structure.</li>
+        <li><strong>isEmpty:</strong> Evaluates whether the queue contains zero elements.</li>
+        <li><strong>isFull:</strong> Validates if a fixed-capacity array implementation has maxed out its storage space.</li>
+    </ul>
+
+    <h2 id="array-rep">3. Array Representation of Queues</h2>
+    <p>An array implementation allocates a continuous, fixed-size memory sequence. It tracks positions using two independent pointer index markers: <code>front</code> and <code>rear</code>.</p>
+
+    <h3>Algorithmic Implementations (Array)</h3>
+    <p><strong>Enqueue Operation:</strong></p>
+    <div class="algo-block">
+        <ol>
+            <li>Check for <strong>Queue Overflow</strong>: If <code>rear == MAX_SIZE - 1</code>, the queue is full; abort.</li>
+            <li>Handle initial element insertion: If <code>front == -1</code>, update <code>front = 0</code>.</li>
+            <li>Advance the tail: <code>rear = rear + 1</code>.</li>
+            <li>Store value: <code>Queue[rear] = value</code>.</li>
+        </ol>
+    </div>
+
+    <p><strong>Dequeue Operation:</strong></p>
+    <div class="algo-block">
+        <ol>
+            <li>Check for <strong>Queue Underflow</strong>: If <code>front == -1</code> or <code>front > rear</code>, the queue is empty; abort.</li>
+            <li>Retrieve value: <code>value = Queue[front]</code>.</li>
+            <li>Advance the head: <code>front = front + 1</code>.</li>
+            <li>Return <code>value</code>.</li>
+        </ol>
+    </div>
+
+    <h2 id="linked-rep">4. Linked Representation of Queues</h2>
+    <p>A linked queue leverages dynamic node structures connected sequentially by memory address references. The <code>front</code> pointer targets the first node in the list, while the <code>rear</code> pointer targets the final node.</p>
+
+    <h3>Algorithmic Implementations (Linked List)</h3>
+    <p><strong>Enqueue Operation (Linked):</strong></p>
+    <div class="algo-block">
+        <ol>
+            <li>Allocate memory: <code>newNode = allocate Node</code>.</li>
+            <li>Populate data fields: <code>newNode.data = value</code> and <code>newNode.next = NULL</code>.</li>
+            <li>If <code>rear == NULL</code>, initialize queue: <code>front = rear = newNode</code>.</li>
+            <li>Else, link to trailing edge: <code>rear.next = newNode</code> followed by <code>rear = newNode</code>.</li>
+        </ol>
+    </div>
+
+    <p><strong>Dequeue Operation (Linked):</strong></p>
+    <div class="algo-block">
+        <ol>
+            <li>Check for <strong>Queue Underflow</strong>: If <code>front == NULL</code>, the queue is empty; abort.</li>
+            <li>Hold target node reference: <code>tempNode = front</code>.</li>
+            <li>Update head location: <code>front = front.next</code>.</li>
+            <li>If <code>front == NULL</code>, clean tail reference: <code>rear = NULL</code>.</li>
+            <li>Isolate data payload: <code>value = tempNode.data</code>.</li>
+            <li>Deallocate memory block: <code>free tempNode</code>.</li>
+            <li>Return <code>value</code>.</li>
+        </ol>
+    </div>
+
+    <h2 id="types">5. Types of Queues</h2>
+    <p>Beyond the basic linear structure, queues are modified to optimize data flow patterns:</p>
+    <ul>
+        <li><strong>Simple Queue:</strong> Insertion occurs strictly at the rear; deletion occurs strictly at the front.</li>
+        <li><strong>Circular Queue:</strong> The last position connects back to the first position (<code>rear = (rear + 1) % MAX_SIZE</code>) to prevent unusable dead space.</li>
+        <li><strong>Double-Ended Queue (Deque):</strong> Allows insertion and deletion operations seamlessly at both front and rear boundaries.</li>
+        <li><strong>Priority Queue:</strong> Elements are assigned a priority value. Higher priority elements are dequeued before lower-priority elements.</li>
+    </ul>
+
+    <h2 id="applications">6. Applications of Queues</h2>
+    <p>Queues are utilized across distributed networks, operating systems, and asynchronous system pipelines:</p>
+    <ul>
+        <li><strong>CPU & Disk Scheduling:</strong> Manages task assignment orders using First-Come-First-Served policies.</li>
+        <li><strong>Asynchronous Data Buffering:</strong> Regulates I/O communication pipelines like print spools or video stream data packets.</li>
+        <li><strong>Network Packet Management:</strong> Buffers streaming web packets arriving at routers to prevent data drop spikes.</li>
+        <li><strong>Breadth-First Search (BFS):</strong> Acts as the foundational data tracking layer for traversing graph structures level by level.</li>
+    </ul>
+
+</div>
+
+</body>
+</html>

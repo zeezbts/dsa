@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Searching & Sorting Reference Sheet</title>
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #334155;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #334155;
+            --accent-color: #9b59b6;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-top: 40px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 5px;
+        }
+
+        .algo-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .algo-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            margin: 15px 0 5px 0;
+            color: #0f172a;
+            font-size: 1rem;
+        }
+
+        ul {
+            margin: 0 0 15px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 0.4rem;
+        }
+
+        .block-box {
+            background-color: #f1f5f9;
+            padding: 12px 15px;
+            border-radius: 4px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            border-left: 4px solid var(--primary-color);
+            margin-top: 5px;
+        }
+
+        .sort-category-title {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin-top: 35px;
+            font-weight: bold;
+        }
+          img {
+  
+  max-width: 100%;
+  height: auto; 
+  object-fit: cover; 
+  display: block; 
+  image-rendering: -webkit-optimize-contrast;
+}
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Searching & Sorting </h1>
+
+    <!-- SECTION 1 -->
+    <h2>1. Searching Paradigms</h2>
+
+    <!-- Linear Search -->
+    <div class="algo-card">
+        <div class="algo-title">A. Linear Search</div>
+        <h4>Definition</h4>
+        <ul>
+            <li><strong>Strategy:</strong> Sequential brute-force scanning strategy.</li>
+            <li><strong>Execution:</strong> Evaluates items one-by-one from index 0 to N-1.</li>
+            <li><strong>Prerequisite:</strong> Works seamlessly on both sorted and unsorted collections.</li>
+            <li><strong>Complexity:</strong> Time: Best O(1), Worst O(n) | Space: O(1) auxiliary footprint.</li>
+        </ul>
+
+        <h4>Example Scenario</h4>
+        <p>Finding value 7 in array [4, 2, 9, 7, 5]:<br>
+        Index 0: 4 == 7 (False) &rarr; Move right.<br>
+        Index 1: 2 == 7 (False) &rarr; Move right.<br>
+        Index 2: 9 == 7 (False) &rarr; Move right.<br>
+        Index 3: 7 == 7 (True) &rarr; Return Index 3.</p>
+
+        <h4>Algorithm</h4>
+        <div class="block-box">1. Loop through index i from 0 to N-1.
+2. If Array[i] == Target, return index i.
+3. If the loop completes without a match, return -1.</div>
+    </div>
+
+    <!-- Binary Search -->
+    <div class="algo-card">
+        <div class="algo-title">B. Binary Search</div>
+        <h4>Definition</h4>
+        <ul>
+            <li><strong>Strategy:</strong> Divide-and-conquer interval lookup strategy.</li>
+            <li><strong>Execution:</strong> Repeatedly halves the remaining searchable data segment.</li>
+            <li><strong>Prerequisite:</strong> Input array <strong>must be sorted</strong> beforehand.</li>
+            <li><strong>Complexity:</strong> Time: Best O(1), Worst O(log n) | Space: O(1) iterative space.</li>
+        </ul>
+
+        <h4>Example Scenario</h4>
+        <p>Finding value 12 in sorted array [3, 6, 8, 12, 15, 18, 21]:<br>
+        Pass 1: Low=0, High=6, Mid=3. Array[3] is 12.<br>
+        Comparison: 12 == 12 (True) &rarr; Return Index 3 instantly.</p>
+
+        <h4>Algorithm</h4>
+        <div class="block-box">1. Set low = 0 and high = N - 1.
+2. While low <= high, calculate mid = floor((low + high) / 2).
+3. If Array[mid] == Target, return mid.
+4. If Target < Array[mid], narrow space by updating high = mid - 1.
+5. If Target > Array[mid], narrow space by updating low = mid + 1.
+6. Return -1 if loop finishes without finding a match.</div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="sort-category-title">2. Basic Sorting Algorithms (O(n²))</div>
+
+    <!-- Bubble Sort -->
+    <div class="algo-card">
+        <div class="algo-title">A. Bubble Sort</div>
+        <h4>Definition</h4>
+        <ul>
+            <li><strong>Strategy:</strong> Adjacent-comparison data sorting technique.</li>
+            <li><strong>Execution:</strong> Compares neighbor indices and swaps them if out of order.</li>
+            <li><strong>Behavior:</strong> Largest elements progressively drift to the end of the array.</li>
+            <li><strong>Complexity:</strong> Time: Best O(n), Worst O(n²) | Space: O(1) in-place allocation.</li>
+        </ul>
+
+        <h4>Example Scenario</h4>
+        <p>Sorting array [5, 1, 4]:<br>
+        Pass 1: Compare 5 and 1 &rarr; Swap &rarr; [1, 5, 4].<br>
+        Pass 2: Compare 5 and 4 &rarr; Swap &rarr;. (Sorted)</p>
+
+        <h4>Algorithm</h4>
+        <div class="block-box">1. Loop i from 0 to N-1 (Outer tracking boundary).
+2. Inner loop j from 0 to N-i-1.
+3. If Array[j] > Array[j+1], swap their values.</div>
+    </div>
+
+    <!-- Insertion Sort -->
+    <div class="algo-card">
+        <div class="algo-title">B. Insertion Sort</div>
+        <h4>Definition</h4>
+        <ul>
+            <li><strong>Strategy:</strong> Incremental insertion sorting paradigm.</li>
+            <li><strong>Execution:</strong> Divides the target collection into sorted and unsorted zones.</li>
+            <li><strong>Behavior:</strong> Picks an element and shifts sorted elements right to insert it.</li>
+            <li><strong>Complexity:</strong> Time: Best O(n), Worst O(n²) | Space: O(1) workspace memory.</li>
+        </ul>
+
+        <h4>Example Scenario</h4>
+        <p>Sorting array [8, 3, 5] with item 3 as key:<br>
+        Key = 3. Compare with 8 &rarr; 8 is larger, shift 8 right &rarr; [8, 8, 5].<br>
+        Insert key at index 0 &rarr; [3, 8, 5].</p>
+
+        <h4>Algorithm</h4>
+        <div class="block-box">1. Loop i from 1 to N-1 to select the current key = Array[i].
+2. Initialize j = i - 1.
+3. While j >= 0 and Array[j] > key, shift Array[j+1] = Array[j] and decrement j.
+4. Place Array[j+1] = key.</div>
+    </div>
+
+    <!-- Selection Sort -->
+    <div class="algo-card">
+        <div class="algo-title">C. Selection Sort</div>
+        <h4>Definition</h4>
+        <ul>
+            <li><strong>Strategy:</strong> Minimum-selection boundary sort structure.</li>
+            <li><strong>Execution:</strong> Scans the remaining items to locate the absolute smallest element.</li>
+            <li><strong>Behavior:</strong> Swaps the identified minimum value into the current boundary slot.</li>
+            <li><strong>Complexity:</strong> Time: Best/Worst O(n²) | Space: O(1) in-place allocation.</li>
+        </ul>
+
+        <h4>Example Scenario</h4>
+        <p>Sorting array [7, 2, 4]:<br>
+        Pass 1: Scan from index 0 &rarr; Minimum found is 2 &rarr; Swap with index 0 &rarr; [2, 7, 4].<br>
+        Pass 2: Scan from index 1 &rarr; Minimum found is 4 &rarr; Swap with index 1 &rarr; [2, 4, 7].</p>
+
+        <h4>Algorithm</h4>
+        <div class="block-box">1. Loop i from 0 to N-1.
+2. Assume current minimum index min_idx = i.
+3. Inner loop j from i+1 to N-1 to find smaller elements.
+4. If Array[j] < Array[min_idx], update min_idx = j.
+5. Swap values of Array[i] and Array[min_idx].</div>
+    </div>
+
+    <!-- SECTION 3 -->
+    <div class="sort-category-title">3. Advanced Sorting Algorithms (O(n log n))</div>
+
+    <!-- Merge Sort -->
+    <div class="algo-card">
+        <div class="algo-title">A. Merge Sort</div>
+        <h4>Definition</h4>
+        <ul>
+            <li><strong>Strategy:</strong> Divide-and-conquer structural sorting method.</li>
+            <li><strong>Execution:</strong> Recursively cuts arrays into equal halves until single values remain.</li>
+            <li><strong>Behavior:</strong> Combines sorted halves back together using a two-pointer merge routine.</li>
+            <li><strong>Complexity:</strong> Time: Best/Worst O(n log n) | Space: O(n) auxiliary buffer array.</li>
+        </ul>
+
+        <h4>Example Scenario</h4>
+        <p>Sorting [6, 2, 8, 1]:<br>
+        Split: [6, 2] and [8, 1] &rarr;, [2], [8], [1].<br>
+        Merge: Combine [6] and [2] &rarr;. Combine [8] and [1] &rarr; [1, 8].<br>
+        Final Merge: Combine [2, 6] and [1, 8] &rarr; [1, 2, 6, 8].</p>
+
+        <h4>Algorithm</h4>
+        <div class="block-box">1. If low >= right, return immediately (base case reached).
+2. Calculate mid = low + (right - low) / 2.
+3. Recursively call MergeSort on the left half (low to mid).
+4. Recursively call MergeSort on the right half (mid+1 to right).
+5. Call Merge(low, mid, right) to combine both sections into a sorted array.</div>
+    </div>
+
+       <!-- Advanced Sorting Section Cont. -->
+    <div class="algo-card">
+        <div class="algo-title">B. Quick Sort</div>
+        <h4>Definition</h4>
+        <ul>
+            <li><strong>Strategy:</strong> Pivot-partitioning divide-and-conquer sort layout.</li>
+            <li><strong>Execution:</strong> Selects an element as a pivot to organize the surrounding data parameters.</li>
+            <li><strong>Behavior:</strong> Moves smaller values left of the pivot element and larger values to the right.</li>
+            <li><strong>Complexity:</strong> Time: Best O(n log n), Worst O(n²) | Space: O(log n) stack allocation.</li>
+        </ul>
+
+        <h4>Example Scenario</h4>
+        <p>Partitioning array [4, 1, 3] with pivot value 3:<br>
+        Move elements smaller than 3 to the left, larger to the right.<br>
+        Rearranged array configuration maps out as: [1] &rarr; [3] &rarr; [4].</p>
+
+        <h4>Algorithm</h4>
+        <div class="block-box">1. If low < high, find partition index p = Partition(low, high).
+2. Recursively call QuickSort on the left sub-array (low to p-1).
+3. Recursively call QuickSort on the right sub-array (p+1 to high).
+4. Partition steps through data, swaps values around the pivot, and returns its final index.</div>
+    </div>
+
+    <div class="algo-card">
+        <div class="algo-title">C. Heap Sort</div>
+        <h4>Definition</h4>
+        <ul>
+            <li><strong>Strategy:</strong> Priority binary tree sorting strategy.</li>
+            <li><strong>Execution:</strong> Converts the unsorted array structural elements into a max-heap structure.</li>
+            <li><strong>Behavior:</strong> Repeatedly extracts the largest root node to build out the sorted index spaces.</li>
+            <li><strong>Complexity:</strong> Time: Best/Worst O(n log n) | Space: O(1) in-place array sequence.</li>
+        </ul>
+
+        <h4>Example Scenario</h4>
+        <p>Sorting array [4, 10, 3]:<br>
+        Build Max-Heap &rarr; Root is 10 &rarr; Layout: [10, 4, 3].<br>
+        Swap root with last item &rarr; Move 10 to end &rarr; [3, 4 | 10].<br>
+        Re-heapify remaining elements &rarr; Extract 4 &rarr; [3 | 4, 10].</p>
+
+        <h4>Algorithm</h4>
+        <div class="block-box">1. Build a Max-Heap from the array data (Heapify process).
+2. Loop i from N-1 down to 1.
+3. Swap the root element Array[0] with Array[i].
+4. Call Heapify(Array, size=i, root=0) to rebalance the remaining tree.</div>
+    </div>
+
+    <div class="algo-card">
+        <div class="algo-title">D. Tree Sort</div>
+        <h4>Definition</h4>
+        <ul>
+            <li><strong>Strategy:</strong> Binary Search Tree (BST) sorting implementation.</li>
+            <li><strong>Execution:</strong> Inserts all array elements sequentially into an empty BST structure.</li>
+            <li><strong>Behavior:</strong> Performs an inorder traversal loop to read the elements out in order.</li>
+            <li><strong>Complexity:</strong> Time: Best O(n log n), Worst O(n²) | Space: O(n) dynamic pointer nodes.</li>
+        </ul>
+
+        <h4>Example Scenario</h4>
+        <p>Sorting values [3, 7, 9]:<br>
+        Insert 7 as root &rarr; Insert 3 to left &rarr; Insert 9 to right.<br>
+        Inorder Traversal (Left, Root, Right) outputs: 3, 7, 9.</p>
+
+        <h4>Algorithm</h4>
+        <div class="block-box">1. Instantiate an empty Binary Search Tree.
+2. Loop through array elements and insert each value into the BST.
+3. Run an Inorder Traversal function on the root node to write values back into the array.</div>
+    </div>
+
+    <!-- SECTION 4 -->
+    <div class="sort-category-title">4. Non-Comparison & External Sorting</div>
+
+    <div class="algo-card">
+        <div class="algo-title">A. Radix Sort</div>
+        <h4>Definition</h4>
+        <ul>
+            <li><strong>Strategy:</strong> Non-comparison integer sorting algorithm.</li>
+            <li><strong>Execution:</strong> Processes numbers digit by digit, avoiding direct element-to-element comparisons.</li>
+            <li><strong>Subroutine:</strong> Leverages a stable sorting algorithm backend, such as Counting Sort.</li>
+            <li><strong>Complexity:</strong> Time: O(d · (n + k)) | Space: O(n + k) auxiliary working buffer space.</li>
+        </ul>
+
+        <h4>Example Scenario</h4>
+        <p>Sorting values [142, 61, 8] by digit position:<br>
+        Pass 1 (Ones Place): Sorts based on 2, 1, 8 &rarr; [61, 142, 8].<br>
+        Pass 2 (Tens Place): Sorts based on 6, 4, 0 &rarr; [8, 142, 61].<br>
+        Pass 3 (Hundreds Place): Sorts based on 0, 1, 0 &rarr;. (Sorted)</p>
+
+        <h4>Algorithm</h4>
+        <div class="block-box">1. Find the maximum number in the array to determine the number of digits d.
+2. Loop through each digit position, from least significant to most significant.
+3. Run stable CountingSort on the array for the current digit position.</div>
+    </div>
+
+    <div class="algo-card">
+        <div class="algo-title">B. Shell Sort</div>
+        <h4>Definition</h4>
+        <ul>
+            <li><strong>Strategy:</strong> Interval-based structural extension of Insertion Sort.</li>
+            <li><strong>Execution:</strong> Compares and adjusts elements separated by a diminishing gap sequence.</li>
+            <li><strong>Behavior:</strong> Allows elements to make large jumps toward their target index coordinates early.</li>
+            <li><strong>Complexity:</strong> Time: Best O(n log n), Worst O(n²) | Space: O(1) in-place footprint.</li>
+        </ul>
+
+        <h4>Algorithm</h4>
+        <div class="block-box">1. Initialize gap size gap = N / 2.
+2. While gap > 0, run an interval insertion sort pass for that gap size.
+3. Reduce the interval space by updating gap = gap / 2 and repeat until gap == 0.</div>
+    </div>
+
+    <div class="algo-card">
+        <div class="algo-title">C. External Sorting</div>
+        <h4>Definition</h4>
+        <ul>
+            <li><strong>Strategy:</strong> Secondary storage buffer data management paradigm.</li>
+            <li><strong>Constraint:</strong> Specifically utilized when datasets are too massive to fit inside RAM.</li>
+            <li><strong>Execution:</strong> Sorts data in manageable chunks and merges them back onto disk files.</li>
+        </ul>
+
+        <h4>Example Scenario</h4>
+        <p>Sorting a massive 50GB file using only 4GB of working RAM:<br>
+        Read 4GB segments into RAM, sort internally, and save them as temporary files on disk.<br>
+        Read the beginning of all temporary files into RAM simultaneously to merge them into a sorted 50GB output file.</p>
+
+        <h4>Algorithm</h4>
+        <div class="block-box">1. Read chunks of the large file that fit into RAM.
+2. Sort each chunk using an internal method (like QuickSort) and save as a temporary run file.
+3. Load the first elements of all temporary run files into memory.
+4. Merge the runs together using a multi-way merge process and write the sorted output to the disk.</div>
+    </div>
