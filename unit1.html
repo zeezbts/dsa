@@ -11,6 +11,39 @@
         ul { padding-left: 20px; margin: 10px 0; }
         li { margin-bottom: 8px; }
         .example { display: block; font-style: italic; color: #6c757d; margin-left: 15px; }
+         table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #dddddd;
+        }
+        th {
+            background-color: #2c3e50;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f1f7fa;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+        }
+        .center {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -32,7 +65,7 @@
         <li><strong>Field:</strong> A single unit of information representing one attribute. <span class="example">Example: A single cell in a spreadsheet containing the value Red.</span></li>
         <li><strong>Record:</strong> A complete collection of fields belonging to one specific entity. <span class="example">Example: A single row in a spreadsheet containing one car's ID, Model, and Color.</span></li>
         <li><strong>File:</strong> A master collection of all related records within an entity set. <span class="example">Example: The entire spreadsheet or database table named Inventory_List.</span></li>
-    </ul>
+    </ul><hr><hr>
         <h2>Classification of Data Structures</h2>
 
     <p>Data structures can broadly be classified into two main categories:</p>
@@ -64,7 +97,7 @@ int main() {
     
     return 0;
 }</pre>
-
+<hr><hr>
     <h3>2. Non-Primitive Data Structures</h3>
     <p>Non-primitive data structures are more complex and are built using primitive data types. They are further divided into:</p>
 
@@ -132,10 +165,10 @@ int main() {
     cout &lt;&lt; endl;
     return 0;
 }</pre>
-
+<hr><hr>
     <h4>c. File Structures</h4>
     <p>Specialized structures designed for storing, retrieving, and updating data efficiently in secondary storage (e.g., B-trees, hash files).</p>
-
+<hr><hr>
     <h2>Applications of Data Structures</h2>
     <ul>
         <li><strong>Arrays:</strong> Implementing stacks, queues, matrices, tables, and storing uniform datasets.</li>
@@ -146,7 +179,160 @@ int main() {
         <li><strong>Stacks:</strong> Handling undo/redo logic, processing function calls, and parsing mathematical expressions.</li>
         <li><strong>Queues:</strong> Managing print buffers, processing background task lines, and handling server job scheduling.</li>
     </ul>
+<hr><hr>
 
 
 </body>
 </html>
+   <h3>1D vs 2D Array Differences</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 5%;">#</th>
+                <th style="width: 20%;">Feature</th>
+                <th style="width: 37%;">1D Array (One-Dimensional)</th>
+                <th style="width: 38%;">2D Array (Two-Dimensional)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="center">1</td>
+                <td><strong>Definition</strong></td>
+                <td>A linear collection of elements arranged in a single row or line.</td>
+                <td>An array of arrays arranged in a grid structure of rows and columns.</td>
+            </tr>
+            <tr>
+                <td class="center">2</td>
+                <td><strong>Dimensions</strong></td>
+                <td>Has only <strong>one</strong> dimension (length/size).</td>
+                <td>Has <strong>two</strong> dimensions (rows and columns).</td>
+            </tr>
+            <tr>
+                <td class="center">3</td>
+                <td><strong>Indexing</strong></td>
+                <td>Requires a <strong>single index</strong> to access an element: <code>array[i]</code>.</td>
+                <td>Requires <strong>two indices</strong> to access an element: <code>array[i][j]</code>.</td>
+            </tr>
+            <tr>
+                <td class="center">4</td>
+                <td><strong>Declaration Syntax (C/C++)</strong></td>
+                <td><code>dataType arrayName[size];</code></td>
+                <td><code>dataType arrayName[rows][columns];</code></td>
+            </tr>
+            <tr>
+                <td class="center">5</td>
+                <td><strong>Visual Analogy</strong></td>
+                <td>A single row of lockers or a simple shopping list.</td>
+                <td>A chessboard, a spreadsheet table, or a digital image grid.</td>
+            </tr>
+            <tr>
+                <td class="center">6</td>
+                <td><strong>Memory Allocation</strong></td>
+                <td>Elements are stored in a continuous, straight linear sequence in RAM.</td>
+                <td>Elements are stored in RAM by flattening the grid using row-major or column-major order.</td>
+            </tr>
+            <tr>
+                <td class="center">7</td>
+                <td><strong>Address Calculation</strong></td>
+                <td>Requires only the index to find the location:<br><code>Base + (i * size)</code></td>
+                <td>Requires row index, column index, and total column count:<br><code>Base + ((i * Total_Cols) + j) * size</code></td>
+            </tr>
+            <tr>
+                <td class="center">8</td>
+                <td><strong>Total Elements Formula</strong></td>
+                <td>Equals the declared size of the array.</td>
+                <td>Equals the total number of rows multiplied by columns (<code>Rows * Columns</code>).</td>
+            </tr>
+            <tr>
+                <td class="center">9</td>
+                <td><strong>Initialization Layout</strong></td>
+                <td>Initialized using a single set of braces:<br><code>{10, 20, 30}</code></td>
+                <td>Initialized using nested sets of braces:<br><code>{{1, 2}, {3, 4}}</code></td>
+            </tr>
+            <tr>
+                <td class="center">10</td>
+                <td><strong>Primary Use Cases</strong></td>
+                <td>Storing simple linear datasets like names, scores, or time-series data.</td>
+                <td>Storing matrices, coordinate systems, pixel data for images, or game boards.</td>
+            </tr>
+        </tbody>
+    </table>
+<hr>
+<hr>
+      <h3>1D Array Example</h3>
+    <p>Stores a simple list of test scores.</p>
+    <pre><code>// Declaration and initialization
+int scores[3] = {85, 92, 78};
+
+// Accessing an element (index 1)
+int secondScore = scores[1]; // Value is 92</code></pre>
+<hr><hr>
+    <h3>2D Array Example</h3>
+    <p>Stores a 2x3 seating grid for a small venue.</p>
+    <pre><code>// Declaration and initialization (2 rows, 3 columns)
+int seats[2][3] = {
+    {1, 2, 3},  // Row 0
+    {4, 5, 6}   // Row 1
+};
+
+// Accessing an element (Row 1, Column 2)
+int selectedSeat = seats[1][2]; // Value is 6</code></pre>
+
+<hr><hr>
+    <h3>Applications of Arrays</h3>
+    <ul>
+        <li><strong>Storing Sequential Data</strong>: Saving basic sequential lists like user contacts, test scores, or financial transactions.</li>
+        <li><strong>Matrix Mathematics</strong>: Performing mathematical matrix operations, image transformation grids, or coordinate layouts.</li>
+        <li><strong>Building Block for Data Structures</strong>: Serving as the foundation to build complex structures like Stacks, Queues, and Hash Tables.</li>
+        <li><strong>Lookup Tables</strong>: Fast static value lookups, such as character conversion codes or math constant sets.</li>
+        <li><strong>CPU Scheduling Algorithms</strong>: Managing processing sequences in computer systems via simple lookup or priority indexes.</li>
+        <li><strong>Game Board Layouts</strong>: Organizing structured grids for games like chessboards, tic-tac-toe, or pixel maps.</li>
+    </ul>
+<hr><hr>
+
+  <!-- 1. Big-O Notation -->
+    <h2>1. Big-O Notation (O) — Worst Case / Upper Bound</h2>
+    <ul>
+        <li><strong>Definition</strong>: Represents the absolute maximum time or space an algorithm will ever take.</li>
+        <li><strong>Guarantees</strong>: The execution time will never cross or violate this upper bound ceiling.</li>
+        <li><strong>Simplification</strong>: Focuses exclusively on the fastest-growing term while dropping lower terms and constants.</li>
+        <li><strong>Real-world Analogy</strong>: Booking a flight and being told "it will take <em>at most</em> 5 hours to arrive."</li>
+        <li><strong>Use Case</strong>: Used by engineering teams to predict worst-case server loads and performance failures.</li>
+    </ul>
+    <pre><code>// Searching for a value that is either at the very end or not in the array
+for (int i = 0; i &lt; n; i++) {
+    if (arr[i] == target) return i; 
+}
+// Time Complexity: O(n) — Checked all 'n' elements in the worst case.</code></pre>
+<hr><hr>
+    <!-- 2. Big-Omega Notation -->
+    <h2>2. Big-Omega Notation (&Omega;) — Best Case / Lower Bound</h2>
+    <ul>
+        <li><strong>Definition</strong>: Represents the absolute minimum time or space an algorithm requires.</li>
+        <li><strong>Guarantees</strong>: The algorithm will never run faster or take fewer steps than this baseline floor.</li>
+        <li><strong>Focus</strong>: Examines performance under the most ideal, perfect input conditions.</li>
+        <li><strong>Real-world Analogy</strong>: A mechanic telling you, "Fixing this car will cost <em>at least</em> \$50."</li>
+        <li><strong>Use Case</strong>: Used to prove that a certain problem cannot be solved faster than a mathematical floor limit.</li>
+    </ul>
+    <pre><code>// Finding the target item immediately on the very first look
+for (int i = 0; i &lt; n; i++) {
+    if (arr[i] == target) return i; // Target is at index 0
+}
+// Time Complexity: &Omega;(1) — Found instantly in a single step.</code></pre>
+<hr><hr>
+    <!-- 3. Big-Theta Notation -->
+    <h2>3. Big-Theta Notation (&Theta;) — Average / Tight Bound</h2>
+    <ul>
+        <li><strong>Definition</strong>: Represents the precise, tight bound where the best and worst cases scale at the same rate.</li>
+        <li><strong>Guarantees</strong>: Sandwiches performance tightly from both above and below.</li>
+        <li><strong>Condition</strong>: Applies only if an algorithm's Big-O and Big-Omega expressions are identical.</li>
+        <li><strong>Real-world Analogy</strong>: A train journey that takes <em>exactly</em> 45 minutes every single day, without fail.</li>
+        <li><strong>Use Case</strong>: Used to describe stable algorithms whose execution loops depend purely on input size, not input values.</li>
+    </ul>
+    <pre><code>// Printing every single item in an array no matter what data is inside it
+for (int i = 0; i &lt; n; i++) {
+    std::cout &lt;&lt; arr[i] &lt;&lt; " ";
+}
+// Time Complexity: &Theta;(n) — Must loop exactly 'n' times in all circumstances.</code></pre>
+<hr><hr>

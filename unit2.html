@@ -1,0 +1,437 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Structure Terminology</title>
+     <style>
+        body { font-family: sans-serif; max-width: 700px; margin: 20px auto; padding: 0 15px; color: #333; line-height: 1.5; }
+        h2 { color: #2c3e50; border-bottom: 2px solid #ecf0f1; padding-bottom: 5px; margin-top: 30px; }
+        p { margin: 8px 0; }
+        ul { padding-left: 20px; margin: 10px 0; }
+        li { margin-bottom: 6px; }
+        pre { background: #f4f4f4; padding: 12px; border-left: 4px solid #3498db; border-radius: 4px; overflow-x: auto; margin-top: 10px; }
+        code { font-family: monospace; font-size: 14px; }
+        strong { color: #2c3e50; }
+          img {
+  
+  max-width: 100%;
+  height: auto; 
+  object-fit: cover; 
+  display: block; 
+  image-rendering: -webkit-optimize-contrast;
+}
+    </style>
+</head>
+<body>
+    <h1>Basic Terminology in Linked Lists</h1>
+
+    <h3>Core Elements</h3>
+    <ul>
+        <li><strong>Node</strong>: The basic building block containing data and a link pointer.</li>
+        <li><strong>Data</strong>: The actual value or payload stored inside the node.</li>
+        <li><strong>Link / Next</strong>: The pointer storing the memory address of the next node.</li>
+    </ul>
+
+    <h3>Positions & Pointers</h3>
+    <ul>
+        <li><strong>Head</strong>: The starting pointer pointing to the first node of the list.</li>
+        <li><strong>Tail</strong>: The last node of the list, whose next pointer usually equals <code>NULL</code>.</li>
+        <li><strong>NULL</strong>: A marker indicating an empty address, signaling the end of the list.</li>
+    </ul>
+
+    <h3>Key Terms & States</h3>
+    <ul>
+        <li><strong>Traversal</strong>: Passing through each node sequentially from start to finish.</li>
+        <li><strong>Overflow</strong>: An error state when memory is full and no new node can be added.</li>
+        <li><strong>Underflow</strong>: An error state when trying to delete an item from an empty list.</li>
+    </ul>
+<hr><hr>
+    <h1>Linked Lists</h1>
+<p>A <strong>linked list</strong> is a linear data structure where elements (nodes) are not stored in contiguous memory locations. Instead, each node points to the next using a memory address link.</p>
+    <p>There are four primary types of linked lists based on how the nodes connect to each other:</p>
+
+    <!-- 1. Singly Linked List -->
+    <h2>1. Singly Linked List</h2>
+    <ul>
+        <li><strong>Structure</strong>: Each node contains data and one forward pointer (<code>next</code>).</li>
+        <li><strong>Direction</strong>: Supports forward traversal only.</li>
+        <li><strong>Termination</strong>: The final node's pointer links directly to <code>NULL</code>.</li>
+        <li><strong>Memory</strong>: Most memory-efficient type as it stores only one pointer per node.</li>
+        <li><strong>Use Case</strong>: Implementing basic stacks or simple file allocation tables.</li>
+    </ul>
+     <h3>Common Time Complexities</h3>
+    <ul>
+        <li><strong>Access / Search</strong>: <span class="complexity">O(N)</span> — Must start at the head and walk step-by-step.</li>
+        <li><strong>Insertion at Head</strong>: <span class="complexity">O(1)</span> — Instant step changing the pointer of a new element.</li>
+        <li><strong>Insertion at Tail</strong>: <span class="complexity">O(N)</span> — Requires traversing to the end of the list first (unless a tail pointer is maintained).</li>
+        <li><strong>Deletion at Head</strong>: <span class="complexity">O(1)</span> — Instant adjustment moving the head pointer forward by one.</li>
+    </ul><hr><hr>
+    <h2>Implementation Example</h2>
+    <pre><code>struct Node {
+    int data;
+    Node* next;
+};
+// Node initialization
+Node* first = new Node{10, nullptr};
+Node* second = new Node{20, nullptr};
+first->next = second; // 10 -> 20 -> NULL</code></pre>
+   <h3>Consolidated Singly Linked List Operations</h3>
+    <pre><code>#include &lt;iostream&gt;
+
+struct Node {
+    int data;
+    Node* next;
+};
+
+// 1. Insertion at Head - O(1)
+void insertAtHead(Node*& head, int val) {
+    head = new Node{val, head};
+}
+
+// 2. Deletion at Head - O(1)
+void deleteAtHead(Node*& head) {
+    if (!head) return;
+    Node* temp = head;
+    head = head-&gt;next;
+    delete temp;
+}
+
+// 3. Insertion at Tail - O(N)
+void insertAtTail(Node*& head, int val) {
+    Node* newNode = new Node{val, nullptr};
+    if (!head) { head = newNode; return; }
+    Node* temp = head;
+    while (temp-&gt;next) temp = temp-&gt;next;
+    temp-&gt;next = newNode;
+}
+
+// 4. Access / Search - O(N)
+bool search(Node* head, int target) {
+    while (head) {
+        if (head-&gt;data == target) return true;
+        head = head-&gt;next;
+    }
+    return false;
+}
+
+void printList(Node* head) {
+    while (head) {
+        std::cout &lt;&lt; head-&gt;data &lt;&lt; " -> ";
+        head = head-&gt;next;
+    }
+    std::cout &lt;&lt; "NULL\n";
+}
+
+int main() {
+    Node* head = nullptr;
+
+    insertAtHead(head, 20);
+    insertAtHead(head, 10);
+    insertAtTail(head, 30);
+    printList(head); // Output: 10 -> 20 -> 30 -> NULL
+
+    std::cout &lt;&lt; "Found 20? " &lt;&lt; (search(head, 20) ? "Yes" : "No") &lt;&lt; "\n";
+
+    deleteAtHead(head);
+    printList(head); // Output: 20 -> 30 -> NULL
+
+    return 0;
+}</code></pre>
+<h1>Singly Linked List</h1>
+<img src="single ll.jpg" alt="">
+<hr><hr>
+    <!-- 2. Doubly Linked List -->
+    <h2>2. Doubly Linked List</h2>
+    <ul>
+        <li><strong>Structure</strong>: Each node contains data, a forward pointer (<code>next</code>), and a backward pointer (<code>prev</code>).</li>
+        <li><strong>Direction</strong>: Supports full bidirectional traversal (forward and backward).</li>
+        <li><strong>Termination</strong>: Both the first node's <code>prev</code> and last node's <code>next</code> point to <code>NULL</code>.</li>
+        <li><strong>Memory</strong>: Requires extra memory allocation to store two pointers per node.</li>
+        <li><strong>Use Case</strong>: Web browser back/forward history or undo/redo application systems.</li>
+    </ul>
+    <h3>Time Complexities &amp; Core Examples</h3>
+    <ul>
+        <li><strong>Search / Access — O(N)</strong>: Must check items sequentially (e.g., locating value <code>25</code> inside a list of files).</li>
+        <li><strong>Insert / Delete at Ends — O(1)</strong>: Instant manipulation if head/tail references exist (e.g., adding a song to the end of a playlist).</li>
+        <li><strong>Insert / Delete at Given Node — O(1)</strong>: Instant restructuring if you have a direct pointer to that node (e.g., removing the currently selected text state).</li>
+    </ul>
+
+    <h2>Implementation Example</h2>
+    <pre><code>struct Node {
+    int data;
+    Node* next;
+    Node* prev;
+};
+// Node initialization
+Node* first = new Node{10, nullptr, nullptr};
+Node* second = new Node{20, nullptr, first};
+first->next = second; // NULL <- 10 <=> 20 -> NULL</code></pre>
+ 
+    <h3>C++ Code Implementation</h3>
+    <pre><code>struct Node {
+    int data;
+    Node* next;
+    Node* prev;
+};
+
+// Insertion at Head - O(1)
+void insertAtHead(Node*& head, Node*& tail, int val) {
+    Node* newNode = new Node{val, head, nullptr};
+    if (head != nullptr) head-&gt;prev = newNode;
+    else tail = newNode;
+    head = newNode;
+}
+
+// Deletion at Head - O(1)
+void deleteAtHead(Node*& head, Node*& tail) {
+    if (head == nullptr) return;
+    Node* temp = head;
+    head = head-&gt;next;
+    if (head != nullptr) head-&gt;prev = nullptr;
+    else tail = nullptr;
+    delete temp;
+}</code></pre>
+<h1>Doubly Linked List</h1>
+<img src="double ll.jpg" alt="" srcset="">
+
+<hr><hr>
+    <!-- 3. Circular Singly Linked List -->
+    <h2>3. Circular Singly Linked List</h2>
+    <ul>
+        <li><strong>Structure</strong>: A singly linked list where the final node connects back to the first node.</li>
+        <li><strong>Direction</strong>: Unidirectional forward navigation that loops continuously.</li>
+        <li><strong>Termination</strong>: No node ever points to <code>NULL</code>.</li>
+        <li><strong>Memory</strong>: Uses the same minimal pointer memory space as a standard singly linked list.</li>
+        <li><strong>Use Case</strong>: Round-robin CPU time-sharing scheduling systems or audio playlist looping.</li>
+    </ul>
+    <h3>Time Complexities &amp; Core Examples</h3>
+    <ul>
+        <li><strong>Search / Access — O(N)</strong>: Must scan sequentially. The search terminates when the pointer cycles back to the starting node (e.g., verifying an active task in an processing loop).</li>
+        <li><strong>Insert / Delete at Head — O(1) or O(N)</strong>: Runs in O(1) time if you track a reference to the tail node directly, as you can bypass full traversal to update the wrap-around link.</li>
+        <li><strong>Insert at Tail — O(1) or O(N)</strong>: Takes O(1) if a tail pointer is actively maintained; otherwise, it requires walking the list to find the element that wraps back around.</li>
+    </ul>
+
+    <h2>Implementation Example</h2>
+    <pre><code>struct Node {
+    int data;
+    Node* next;
+};
+// Node initialization
+Node* first = new Node{10, nullptr};
+Node* second = new Node{20, first}; // Loops back to first
+first->next = second;               // 10 -> 20 -> (loops back to 10)</code></pre>
+   <hr><hr>
+    <h3>Consolidated C++ Program</h3>
+    <pre><code>#include &lt;iostream&gt;
+
+struct Node {
+    int data;
+    Node* next;
+};
+
+// 1. Insertion at Head - O(1) using tail pointer tracking
+void insertAtHead(Node*& tail, int val) {
+    Node* newNode = new Node{val, nullptr};
+    if (!tail) {
+        newNode-&gt;next = newNode;
+        tail = newNode;
+        return;
+    }
+    newNode-&gt;next = tail-&gt;next; // Point new node to the old head
+    tail-&gt;next = newNode;       // Link tail to the new head
+}
+
+// 2. Insertion at Tail - O(1) using tail pointer tracking
+void insertAtTail(Node*& tail, int val) {
+    Node* newNode = new Node{val, nullptr};
+    if (!tail) {
+        newNode-&gt;next = newNode;
+        tail = newNode;
+        return;
+    }
+    newNode-&gt;next = tail-&gt;next; // Point new node to the head
+    tail-&gt;next = newNode;       // Link old tail to new node
+    tail = newNode;             // Update tail pointer marker
+}
+
+// 3. Deletion at Head - O(1)
+void deleteAtHead(Node*& tail) {
+    if (!tail) return; // Underflow guard
+    Node* head = tail-&gt;next;
+    if (head == tail) { // Only one node in the list
+        delete head;
+        tail = nullptr;
+        return;
+    }
+    tail-&gt;next = head-&gt;next; // Link tail to the second node
+    delete head;             // Clear old head memory
+}
+
+// 4. Access / Search - O(N)
+bool search(Node* tail, int target) {
+    if (!tail) return false;
+    Node* current = tail-&gt;next; // Start from head
+    do {
+        if (current-&gt;data == target) return true;
+        current = current-&gt;next;
+    } while (current != tail-&gt;next);
+    return false;
+}
+
+void printList(Node* tail) {
+    if (!tail) { std::cout &lt;&lt; "Empty List\n"; return; }
+    Node* current = tail-&gt;next; // Start from head
+    do {
+        std::cout &lt;&lt; current-&gt;data &lt;&lt; " -> ";
+        current = current-&gt;next;
+    } while (current != tail-&gt;next);
+    std::cout &lt;&lt; "(Loops back to " &lt;&lt; tail-&gt;next-&gt;data &lt;&lt; ")\n";
+}
+
+int main() {
+    Node* tail = nullptr; // Track list via tail instead of head for efficiency
+
+    insertAtHead(tail, 20);
+    insertAtHead(tail, 10);
+    insertAtTail(tail, 30);
+    printList(tail); // Output: 10 -&gt; 20 -&gt; 30 -&gt; (Loops back to 10)
+
+    std::cout &lt;&lt; "Found 20? " &lt;&lt; (search(tail, 20) ? "Yes" : "No") &lt;&lt; "\n";
+
+    deleteAtHead(tail);
+    printList(tail); // Output: 20 -&gt; 30 -&gt; (Loops back to 20)
+
+    return 0;
+}</code></pre>
+
+<img src="Circular Singly Linked List.jpg" alt="" srcset="">
+<hr><hr>
+    <!-- 4. Circular Doubly Linked List -->
+    <h2>4. Circular Doubly Linked List</h2>
+    <ul>
+        <li><strong>Structure</strong>: A doubly linked list where end nodes cross-connect directly with each other.</li>
+        <li><strong>Direction</strong>: Continuous loop traversal available in both directions.</li>
+        <li><strong>Termination</strong>: No termination point exists; pointers never equal <code>NULL</code>.</li>
+        <li><strong>Memory</strong>: Most complex variant requiring maximum pointer storage overhead.</li>
+        <li><strong>Use Case</strong>: Infinite game item carousel selectors or browser tab shuffling layouts.</li>
+    </ul>
+    
+    <h3>Time Complexities &amp; Core Examples</h3>
+    <ul>
+        <li><strong>Search / Access — O(N)</strong>: Must scan sequentially forward or backward. You break the traversal loop when your cursor pointer meets the starting node address again.</li>
+        <li><strong>Insert / Delete at Ends — O(1)</strong>: Runs in perfect constant time if you hold a simple head pointer tracker. Bypasses list traversal since head-&gt;prev gives you direct access to the tail node.</li>
+        <li><strong>Insert / Delete at Given Node — O(1)</strong>: Performs instant pointer shifting because any isolated node explicitly stores the location details of its neighboring nodes.</li>
+    </ul>
+
+    <h2>Implementation Example</h2>
+    <pre><code>struct Node {
+    int data;
+    Node* next;
+    Node* prev;
+};
+// Node initialization
+Node* first = new Node{10, nullptr, nullptr};
+Node* second = new Node{20, first, first}; // next/prev link to first
+first->next = second;
+first->prev = second;                      // first prev links to second</code></pre>
+<hr><hr>
+    <h3>Consolidated C++ Program</h3>
+    <pre><code>#include &lt;iostream&gt;
+
+struct Node {
+    int data;
+    Node* next;
+    Node* prev;
+};
+
+// 1. Insertion at Head - O(1)
+void insertAtHead(Node*& head, int val) {
+    Node* newNode = new Node{val, nullptr, nullptr};
+    if (!head) {
+        newNode-&gt;next = newNode;
+        newNode-&gt;prev = newNode;
+        head = newNode;
+        return;
+    }
+    Node* tail = head-&gt;prev; // Direct access to tail
+    
+    newNode-&gt;next = head;
+    newNode-&gt;prev = tail;
+    head-&gt;prev = newNode;
+    tail-&gt;next = newNode;
+    head = newNode;
+}
+
+// 2. Insertion at Tail - O(1)
+void insertAtTail(Node*& head, int val) {
+    Node* newNode = new Node{val, nullptr, nullptr};
+    if (!head) {
+        newNode-&gt;next = newNode;
+        newNode-&gt;prev = newNode;
+        head = newNode;
+        return;
+    }
+    Node* tail = head-&gt;prev; // Direct access to tail
+    
+    newNode-&gt;next = head;
+    newNode-&gt;prev = tail;
+    tail-&gt;next = newNode;
+    head-&gt;prev = newNode;
+}
+
+// 3. Deletion at Head - O(1)
+void deleteAtHead(Node*& head) {
+    if (!head) return; // Underflow guard
+    Node* tail = head-&gt;prev;
+    Node* temp = head;
+    
+    if (head == tail) { // Only one node in the list
+        delete head;
+        head = nullptr;
+        return;
+    }
+    head = head-&gt;next;
+    head-&gt;prev = tail;
+    tail-&gt;next = head;
+    delete temp;
+}
+
+void printForward(Node* head) {
+    if (!head) { std::cout &lt;&lt; "Empty List\n"; return; }
+    Node* current = head;
+    do {
+        std::cout &lt;&lt; current-&gt;data &lt;&lt; " &lt;=&gt; ";
+        current = current-&gt;next;
+    } while (current != head);
+    std::cout &lt;&lt; "(Loops back to " &lt;&lt; head-&gt;data &lt;&lt; ")\n";
+}
+
+int main() {
+    Node* head = nullptr;
+
+    insertAtHead(head, 20);
+    insertAtHead(head, 10);
+    insertAtTail(head, 30);
+    printForward(head); // Output: 10 &lt;=&gt; 20 &lt;=&gt; 30 &lt;=&gt; (Loops back to 10)
+
+    deleteAtHead(head);
+    printForward(head); // Output: 20 &lt;=&gt; 30 &lt;=&gt; (Loops back to 20)
+
+    return 0;
+}</code></pre>
+<h1>Linked List Visualization</h1>
+<img src="linked list.jpg" alt="" srcset="">
+<hr><hr>
+    <h3>Applications of Linked Lists</h3>
+    <ul>
+        <li><strong>Browser History</strong>: Managing back and forward page routing via Doubly Linked Lists.</li>
+        <li><strong>Music Playlists</strong>: Sequential song queues with fluent track-to-track navigation.</li>
+        <li><strong>Undo/Redo Tracking</strong>: Stepping back and forth through chronological state changes.</li>
+        <li><strong>Image Viewers</strong>: Cycling next and previous photo assets cleanly inside galleries.</li>
+        <li><strong>OS CPU Scheduling</strong>: Cycling active threads using round-robin Circular Linked Lists.</li>
+        <li><strong>RAM Allocation</strong>: Managing available and active blocks inside system heap records.</li>
+        <li><strong>Data Structure Engine</strong>: Acting as the dynamic foundation for Stacks and Queues.</li>
+        <li><strong>Hash Chaining</strong>: Resolving indexing conflicts cleanly inside crowded Hash Tables.</li>
+        <li><strong>Graph Modeling</strong>: Representing connection networks via structural Adjacency Lists.</li>
+        <li><strong>Polynomial Math</strong>: Storing varying mathematical terms cleanly as separate dynamic nodes.</li>
+    </ul>
