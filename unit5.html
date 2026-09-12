@@ -1,390 +1,888 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Core Searching & Sorting Reference Sheet</title>
-    <style>
-        :root {
-            --primary-color: #1e3a8a;
-            --secondary-color: #334155;
-            --bg-color: #f8f9fa;
-            --card-bg: #ffffff;
-            --text-color: #334155;
-            --accent-color: #9b59b6;
-            --border-color: #e2e8f0;
-        }
+ <head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260904-05-c4a2e96","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/9e99ecf74af2a081.telemetry_sdk.js" integrity="sha512-tZ7fmfTx2KpCLjXQnEuL9azQ4A5+7+xumsx6r/WYVD0zCP/8LP8hDeCypMQesmP+WyAew4g7l5Ah23Bjd6yoVg=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit 5: Searching and Sorting</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #132638;
+      --ink-soft: #254358;
+      --paper: #fffdf7;
+      --paper-deep: #f3eee1;
+      --saffron: #efaa28;
+      --saffron-light: #fff1cb;
+      --teal: #166a6a;
+      --rose: #c9574e;
+      --line: #d7d0bf;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            margin: 0;
-            padding: 20px;
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
+    body {
+      margin: 0;
+      font-family: "Work Sans", sans-serif;
+      color: var(--ink);
+      background: var(--paper-deep);
+    }
 
-        h1 {
-            color: var(--primary-color);
-            text-align: center;
-            border-bottom: 3px solid var(--accent-color);
-            padding-bottom: 10px;
-        }
+    h1, h2, h3 {
+      font-family: "Fraunces", serif;
+    }
 
-        h2 {
-            color: var(--primary-color);
-            margin-top: 40px;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 5px;
-        }
+    .paper-grid {
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(rgba(19, 38, 56, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(19, 38, 56, 0.035) 1px, transparent 1px);
+      background-size: 26px 26px;
+    }
 
-        .algo-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
+    .topic-nav {
+      backdrop-filter: blur(12px);
+      background: rgba(255, 253, 247, 0.92);
+    }
 
-        .algo-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-top: 0;
-            margin-bottom: 15px;
-        }
+    .lesson-card {
+      border: 1px solid var(--line);
+      border-top: 5px solid var(--saffron);
+      box-shadow: 7px 7px 0 rgba(19, 38, 56, 0.08);
+    }
 
-        h4 {
-            margin: 15px 0 5px 0;
-            color: #0f172a;
-            font-size: 1rem;
-        }
+    .lesson-card.sorting {
+      border-top-color: var(--teal);
+    }
 
-        ul {
-            margin: 0 0 15px 0;
-            padding-left: 20px;
-        }
+    .number-tile {
+      min-width: 2.6rem;
+      padding: 0.55rem 0.65rem;
+      text-align: center;
+      border-radius: 0.65rem;
+      background: #ffffff;
+      border: 1px solid #cfc7b5;
+      font-weight: 700;
+      box-shadow: 0 2px 0 rgba(19, 38, 56, 0.08);
+    }
 
-        li {
-            margin-bottom: 0.4rem;
-        }
+    .number-tile.active {
+      color: #ffffff;
+      background: var(--rose);
+      border-color: var(--rose);
+    }
 
-        .block-box {
-            background-color: #f1f5f9;
-            padding: 12px 15px;
-            border-radius: 4px;
-            font-family: "Courier New", Courier, monospace;
-            font-size: 0.9rem;
-            white-space: pre-wrap;
-            border-left: 4px solid var(--primary-color);
-            margin-top: 5px;
-        }
+    .number-tile.mid {
+      color: #ffffff;
+      background: var(--teal);
+      border-color: var(--teal);
+    }
 
-        .sort-category-title {
-            color: var(--accent-color);
-            font-size: 1.5rem;
-            margin-top: 35px;
-            font-weight: bold;
-        }
-          img {
-  
-  max-width: 100%;
-  height: auto; 
-  object-fit: cover; 
-  display: block; 
-  image-rendering: -webkit-optimize-contrast;
-}
-    </style>
-</head>
-<body>
+    .number-tile.fixed {
+      color: #ffffff;
+      background: var(--saffron);
+      border-color: var(--saffron);
+    }
 
-<div class="container">
+    .code-block {
+      overflow-x: auto;
+      background: #102434;
+      color: #eaf3f4;
+      border-radius: 0.9rem;
+      border: 1px solid #27475c;
+      padding: 1.15rem;
+      font-family: "Space Mono", monospace;
+      font-size: 0.82rem;
+      line-height: 1.7;
+    }
 
-    <h1>Searching & Sorting </h1>
+    .comparison-table th {
+      color: #ffffff;
+      background: var(--ink);
+    }
 
-    <!-- SECTION 1 -->
-    <h2>1. Searching Paradigms</h2>
+    .comparison-table td,
+    .comparison-table th {
+      padding: 0.85rem;
+      border: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
 
-    <!-- Linear Search -->
-    <div class="algo-card">
-        <div class="algo-title">A. Linear Search</div>
-        <h4>Definition</h4>
-        <ul>
-            <li><strong>Strategy:</strong> Sequential brute-force scanning strategy.</li>
-            <li><strong>Execution:</strong> Evaluates items one-by-one from index 0 to N-1.</li>
-            <li><strong>Prerequisite:</strong> Works seamlessly on both sorted and unsorted collections.</li>
-            <li><strong>Complexity:</strong> Time: Best O(1), Worst O(n) | Space: O(1) auxiliary footprint.</li>
-        </ul>
+    .comparison-table tr:nth-child(even) td {
+      background: #fffaf0;
+    }
 
-        <h4>Example Scenario</h4>
-        <p>Finding value 7 in array [4, 2, 9, 7, 5]:<br>
-        Index 0: 4 == 7 (False) &rarr; Move right.<br>
-        Index 1: 2 == 7 (False) &rarr; Move right.<br>
-        Index 2: 9 == 7 (False) &rarr; Move right.<br>
-        Index 3: 7 == 7 (True) &rarr; Return Index 3.</p>
+    details summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--ink-soft);
+    }
 
-        <h4>Algorithm</h4>
-        <div class="block-box">1. Loop through index i from 0 to N-1.
-2. If Array[i] == Target, return index i.
-3. If the loop completes without a match, return -1.</div>
+    details summary::marker {
+      color: var(--saffron);
+    }
+
+    #scroll-top {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    #scroll-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 640px) {
+      .number-tile {
+        min-width: 2.15rem;
+        padding: 0.45rem 0.4rem;
+        font-size: 0.82rem;
+      }
+    }
+  </style>
+  <script src="/_sdk/fbe2ebfd64647c54.data_sdk.js" type="text/javascript" integrity="sha512-vkTX6CfvpHc3WbjK+tFJCaDuw4ERA4aEV/e5/7+MMJPMTF4RJYCI6CAwJBT/gtDW+dba4uLSsPUgDjVDHWtgUQ=="></script>
+  <script src="/_sdk/fcb6dc01f91829ac.resizing_sdk.js" type="text/javascript" integrity="sha512-YK8JfnN705qaEaVhiL7pcVB2Rs/BbdX5yxV55Az8zT/1JanyEWTw9HqCF915m9iV1YEaoil8qsjJz03l1Kb0Ug=="></script>
+ </head>
+ <body data-template-id="__page-root" class="w-full">
+  <header data-template-id="hero-banner" class="canva-banner bg-[#132638] text-white">
+   <div class="w-full max-w-7xl mx-auto px-5 sm:px-8 py-12 sm:py-16">
+    <div class="max-w-4xl">
+     <p data-template-id="unit-label" class="canva-tag inline-block rounded-full bg-[#efaa28] px-4 py-1.5 font-bold tracking-[0.12em] uppercase text-[#132638]"></p>
+     <h1 data-template-id="page-title" class="canva-text mt-5 max-w-3xl font-bold leading-tight"></h1>
+     <p data-template-id="page-subtitle" class="canva-text mt-5 max-w-2xl text-lg leading-8 text-slate-200"></p>
     </div>
-
-    <!-- Binary Search -->
-    <div class="algo-card">
-        <div class="algo-title">B. Binary Search</div>
-        <h4>Definition</h4>
-        <ul>
-            <li><strong>Strategy:</strong> Divide-and-conquer interval lookup strategy.</li>
-            <li><strong>Execution:</strong> Repeatedly halves the remaining searchable data segment.</li>
-            <li><strong>Prerequisite:</strong> Input array <strong>must be sorted</strong> beforehand.</li>
-            <li><strong>Complexity:</strong> Time: Best O(1), Worst O(log n) | Space: O(1) iterative space.</li>
-        </ul>
-
-        <h4>Example Scenario</h4>
-        <p>Finding value 12 in sorted array [3, 6, 8, 12, 15, 18, 21]:<br>
-        Pass 1: Low=0, High=6, Mid=3. Array[3] is 12.<br>
-        Comparison: 12 == 12 (True) &rarr; Return Index 3 instantly.</p>
-
-        <h4>Algorithm</h4>
-        <div class="block-box">1. Set low = 0 and high = N - 1.
-2. While low <= high, calculate mid = floor((low + high) / 2).
-3. If Array[mid] == Target, return mid.
-4. If Target < Array[mid], narrow space by updating high = mid - 1.
-5. If Target > Array[mid], narrow space by updating low = mid + 1.
-6. Return -1 if loop finishes without finding a match.</div>
+    <div class="mt-9 grid gap-3 sm:grid-cols-3">
+     <div class="rounded-xl border border-slate-500 bg-white/10 p-4"><i data-lucide="search" class="mb-2 h-5 w-5 text-[#efaa28]"></i>
+      <p class="font-semibold">Searching</p>
+      <p class="mt-1 text-sm text-slate-300">Find keys, locations, and records.</p>
+     </div>
+     <div class="rounded-xl border border-slate-500 bg-white/10 p-4"><i data-lucide="arrow-up-down" class="mb-2 h-5 w-5 text-[#efaa28]"></i>
+      <p class="font-semibold">Sorting</p>
+      <p class="mt-1 text-sm text-slate-300">Arrange data for clarity and speed.</p>
+     </div>
+     <div class="rounded-xl border border-slate-500 bg-white/10 p-4"><i data-lucide="chart-no-axes-column-increasing" class="mb-2 h-5 w-5 text-[#efaa28]"></i>
+      <p class="font-semibold">Complexity</p>
+      <p class="mt-1 text-sm text-slate-300">Compare algorithms with Big-O notation.</p>
+     </div>
     </div>
-
-    <!-- SECTION 2 -->
-    <div class="sort-category-title">2. Basic Sorting Algorithms (O(n²))</div>
-
-    <!-- Bubble Sort -->
-    <div class="algo-card">
-        <div class="algo-title">A. Bubble Sort</div>
-        <h4>Definition</h4>
-        <ul>
-            <li><strong>Strategy:</strong> Adjacent-comparison data sorting technique.</li>
-            <li><strong>Execution:</strong> Compares neighbor indices and swaps them if out of order.</li>
-            <li><strong>Behavior:</strong> Largest elements progressively drift to the end of the array.</li>
-            <li><strong>Complexity:</strong> Time: Best O(n), Worst O(n²) | Space: O(1) in-place allocation.</li>
+   </div>
+  </header>
+  <nav class="topic-nav sticky top-0 z-30 border-b border-[#d7d0bf]" aria-label="Unit topics">
+   <div class="w-full max-w-7xl mx-auto flex gap-2 overflow-x-auto px-5 py-3 sm:px-8"><a class="whitespace-nowrap rounded-full bg-[#132638] px-4 py-2 text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-[#efaa28]" href="#searching">Part A · Searching</a> <a class="whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold text-[#254358] hover:bg-[#fff1cb] focus:outline-none focus:ring-2 focus:ring-[#efaa28]" href="#sorting">Part B · Sorting</a> <a class="whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold text-[#254358] hover:bg-[#fff1cb] focus:outline-none focus:ring-2 focus:ring-[#efaa28]" href="#comparison">Comparison</a> <a class="whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold text-[#254358] hover:bg-[#fff1cb] focus:outline-none focus:ring-2 focus:ring-[#efaa28]" href="#external-sorting">External Sorting</a>
+   </div>
+  </nav>
+  <main class="paper-grid w-full">
+   <section id="searching" class="w-full max-w-7xl mx-auto px-5 py-12 sm:px-8 sm:py-16">
+    <div data-template-id="searching-section" class="canva-section rounded-3xl border border-[#d7d0bf] bg-[#fffdf7] p-6 shadow-sm sm:p-10">
+     <div class="flex flex-wrap items-center gap-3"><span class="rounded-full bg-[#fff1cb] px-3 py-1 text-sm font-bold text-[#9a6100]">PART A</span> <span class="font-semibold text-[#166a6a]">Finding an element in a collection</span>
+     </div>
+     <h2 data-template-id="searching-heading" class="canva-text mt-4 font-bold leading-tight"></h2>
+     <p class="mt-4 max-w-4xl text-lg leading-8 text-[#254358]">Searching is the process of finding a particular element, called the <strong>search key</strong>, in a collection of data. A collection may be an array, linked list, tree, file, or database.</p>
+     <div class="mt-8 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+      <article class="rounded-2xl bg-[#f3eee1] p-6">
+       <h3 class="text-2xl font-bold">A simple searching example</h3>
+       <p class="mt-3 leading-7">Given an array, the operation checks whether the key exists and returns its location.</p>
+       <div class="mt-6 rounded-xl border border-[#d7d0bf] bg-white p-5">
+        <p class="text-sm font-bold uppercase tracking-wider text-[#166a6a]">Search key = 25</p>
+        <div class="mt-4 flex flex-wrap gap-2" aria-label="Array containing 15, 8, 25, 10 and 30"><span class="number-tile">15</span> <span class="number-tile">8</span> <span class="number-tile active">25</span> <span class="number-tile">10</span> <span class="number-tile">30</span>
+        </div>
+        <p class="mt-4 font-semibold text-[#c9574e]">25 exists at index 2.</p>
+       </div>
+      </article>
+      <aside class="rounded-2xl bg-[#132638] p-6 text-white">
+       <h3 class="text-2xl font-bold">Objectives of searching</h3>
+       <ul class="mt-4 space-y-3 leading-6 text-slate-200">
+        <li>• Find whether an item exists.</li>
+        <li>• Locate the position of an item.</li>
+        <li>• Retrieve information linked to a key.</li>
+        <li>• Check duplicate values.</li>
+        <li>• Search records in files and databases.</li>
+        <li>• Support insert, delete, and update operations.</li>
+       </ul>
+      </aside>
+     </div>
+     <div class="mt-9 grid gap-5 md:grid-cols-2">
+      <article class="rounded-2xl border border-[#d7d0bf] bg-white p-6">
+       <p class="font-bold text-[#c9574e]">1. Linear Search</p>
+       <p class="mt-2 leading-7">Checks elements one by one. It works on sorted and unsorted data and is simple, but slower for large collections.</p>
+      </article>
+      <article class="rounded-2xl border border-[#d7d0bf] bg-white p-6">
+       <p class="font-bold text-[#166a6a]">2. Binary Search</p>
+       <p class="mt-2 leading-7">Repeatedly divides the search area into halves. It requires sorted data and is much faster for large arrays.</p>
+      </article>
+     </div>
+     <div class="mt-10 grid gap-7 lg:grid-cols-2">
+      <article>
+       <h3 class="text-2xl font-bold">Important terms</h3>
+       <div class="mt-4 overflow-x-auto">
+        <table class="comparison-table w-full border-collapse text-sm">
+         <thead>
+          <tr>
+           <th>Term</th>
+           <th>Meaning</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr>
+           <td class="font-semibold">Search key</td>
+           <td>Element being searched.</td>
+          </tr>
+          <tr>
+           <td class="font-semibold">Successful search</td>
+           <td>The key is found.</td>
+          </tr>
+          <tr>
+           <td class="font-semibold">Unsuccessful search</td>
+           <td>The key is not found.</td>
+          </tr>
+          <tr>
+           <td class="font-semibold">Position</td>
+           <td>Location of the key in the collection.</td>
+          </tr>
+          <tr>
+           <td class="font-semibold">Comparison</td>
+           <td>Checking the key with an element.</td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </article>
+      <article>
+       <h3 class="text-2xl font-bold">Performance factors</h3>
+       <div class="mt-4 rounded-2xl border border-[#d7d0bf] bg-[#fffaf0] p-6">
+        <ul class="grid gap-3 leading-6">
+         <li>• Number of elements</li>
+         <li>• Whether the data is sorted</li>
+         <li>• Type of data structure</li>
+         <li>• Searching algorithm used</li>
+         <li>• Number of comparisons</li>
+         <li>• Memory available</li>
         </ul>
+       </div>
+       <h3 class="mt-6 text-2xl font-bold">Linear vs Binary Search</h3>
+       <div class="mt-4 overflow-x-auto">
+        <table class="comparison-table w-full border-collapse text-sm">
+         <thead>
+          <tr>
+           <th>Feature</th>
+           <th>Linear</th>
+           <th>Binary</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr>
+           <td>Data order</td>
+           <td>Sorted or unsorted</td>
+           <td>Must be sorted</td>
+          </tr>
+          <tr>
+           <td>Method</td>
+           <td>Sequential comparison</td>
+           <td>Divide and conquer</td>
+          </tr>
+          <tr>
+           <td>Worst case</td>
+           <td>O(n)</td>
+           <td>O(log n)</td>
+          </tr>
+          <tr>
+           <td>Best suited to</td>
+           <td>Small or unsorted data</td>
+           <td>Large sorted data</td>
+          </tr>
+         </tbody>
+        </table>
+       </div>
+      </article>
+     </div>
+     <div class="mt-12 grid gap-8 xl:grid-cols-2">
+      <article class="lesson-card rounded-2xl bg-white p-6 sm:p-8">
+       <div class="flex items-center justify-between gap-4">
+        <h3 data-template-id="linear-search-title" class="canva-text font-bold"></h3><span class="rounded-full bg-[#fff1cb] px-3 py-1 text-sm font-bold text-[#9a6100]">Sequential</span>
+       </div>
+       <p class="mt-4 leading-7">Linear search compares every element with the search key from the beginning of the list until the key is found or the list ends. It is also called <strong>sequential search</strong>.</p>
+       <div class="mt-6 rounded-xl bg-[#f3eee1] p-5">
+        <p class="font-bold">Search for 30</p>
+        <div class="mt-4 flex flex-wrap gap-2"><span class="number-tile">12</span> <span class="number-tile">25</span> <span class="number-tile">7</span> <span class="number-tile active">30</span> <span class="number-tile">18</span>
+        </div>
+        <p class="mt-4 text-sm font-semibold text-[#c9574e]">30 is found at index 3 after four comparisons.</p>
+       </div>
+       <h4 class="mt-7 font-bold text-[#166a6a]">Algorithm</h4>
+       <pre class="code-block mt-3"><code>LINEAR_SEARCH(A, n, key)
 
-        <h4>Example Scenario</h4>
-        <p>Sorting array [5, 1, 4]:<br>
-        Pass 1: Compare 5 and 1 &rarr; Swap &rarr; [1, 5, 4].<br>
-        Pass 2: Compare 5 and 4 &rarr; Swap &rarr;. (Sorted)</p>
+for i = 0 to n - 1
+    if A[i] == key
+        return i
 
-        <h4>Algorithm</h4>
-        <div class="block-box">1. Loop i from 0 to N-1 (Outer tracking boundary).
-2. Inner loop j from 0 to N-i-1.
-3. If Array[j] > Array[j+1], swap their values.</div>
+return -1</code></pre>
+       <div class="mt-6 grid gap-3 sm:grid-cols-3">
+        <div class="rounded-xl bg-[#fff1cb] p-3">
+         <strong>Best:</strong><br>
+         O(1)
+        </div>
+        <div class="rounded-xl bg-[#fff1cb] p-3">
+         <strong>Average:</strong><br>
+         O(n)
+        </div>
+        <div class="rounded-xl bg-[#fff1cb] p-3">
+         <strong>Worst:</strong><br>
+         O(n)
+        </div>
+       </div>
+       <details class="mt-6 rounded-xl border border-[#d7d0bf] bg-[#fffaf0] p-4"><summary>Advantages and disadvantages</summary>
+        <div class="mt-4 grid gap-4 sm:grid-cols-2 text-sm leading-6">
+         <div>
+          <strong>Advantages</strong><br>
+          Simple, easy to implement, works on unsorted lists, and needs no extra memory.
+         </div>
+         <div>
+          <strong>Disadvantages</strong><br>
+          Slow for large data and may compare every element.
+         </div>
+        </div>
+       </details>
+      </article>
+      <article class="lesson-card rounded-2xl bg-white p-6 sm:p-8">
+       <div class="flex items-center justify-between gap-4">
+        <h3 data-template-id="binary-search-title" class="canva-text font-bold"></h3><span class="rounded-full bg-[#dff1ef] px-3 py-1 text-sm font-bold text-[#166a6a]">Sorted only</span>
+       </div>
+       <p class="mt-4 leading-7">Binary search repeatedly divides a sorted array into two halves. At each step, the middle element is compared with the key.</p>
+       <div class="mt-6 rounded-xl bg-[#f3eee1] p-5">
+        <p class="font-bold">Search for 25 in a sorted array</p>
+        <div class="mt-4 flex flex-wrap gap-2"><span class="number-tile">5</span> <span class="number-tile">10</span> <span class="number-tile">15</span> <span class="number-tile mid">20</span> <span class="number-tile active">25</span> <span class="number-tile">30</span> <span class="number-tile">35</span>
+        </div>
+        <ol class="mt-4 list-decimal space-y-1 pl-5 text-sm leading-6">
+         <li>Mid = 20. Since 25 &gt; 20, search the right half.</li>
+         <li>New mid = 30. Since 25 &lt; 30, search the left half.</li>
+         <li>25 is found at index 4.</li>
+        </ol>
+       </div>
+       <h4 class="mt-7 font-bold text-[#166a6a]">Algorithm</h4>
+       <pre class="code-block mt-3"><code>BINARY_SEARCH(A, n, key)
+
+low = 0
+high = n - 1
+
+while low &lt;= high
+    mid = low + (high - low) / 2
+
+    if A[mid] == key
+        return mid
+    else if key &lt; A[mid]
+        high = mid - 1
+    else
+        low = mid + 1
+
+return -1</code></pre>
+       <div class="mt-6 grid gap-3 sm:grid-cols-3">
+        <div class="rounded-xl bg-[#dff1ef] p-3">
+         <strong>Best:</strong><br>
+         O(1)
+        </div>
+        <div class="rounded-xl bg-[#dff1ef] p-3">
+         <strong>Average:</strong><br>
+         O(log n)
+        </div>
+        <div class="rounded-xl bg-[#dff1ef] p-3">
+         <strong>Worst:</strong><br>
+         O(log n)
+        </div>
+       </div>
+       <details class="mt-6 rounded-xl border border-[#d7d0bf] bg-[#f2fbfa] p-4"><summary>Advantages and disadvantages</summary>
+        <div class="mt-4 grid gap-4 sm:grid-cols-2 text-sm leading-6">
+         <div>
+          <strong>Advantages</strong><br>
+          Fast for large sorted arrays and requires very few comparisons.
+         </div>
+         <div>
+          <strong>Disadvantages</strong><br>
+          Data must be sorted; it is not convenient for linked lists.
+         </div>
+        </div>
+       </details>
+      </article>
+     </div>
     </div>
+   </section>
+   <section id="sorting" class="w-full max-w-7xl mx-auto px-5 pb-12 sm:px-8 sm:pb-16">
+    <div data-template-id="sorting-section" class="canva-section rounded-3xl border border-[#d7d0bf] bg-[#fffdf7] p-6 shadow-sm sm:p-10">
+     <div class="flex flex-wrap items-center gap-3"><span class="rounded-full bg-[#dff1ef] px-3 py-1 text-sm font-bold text-[#166a6a]">PART B</span> <span class="font-semibold text-[#c9574e]">Organising data into a useful order</span>
+     </div>
+     <h2 data-template-id="sorting-heading" class="canva-text mt-4 font-bold leading-tight"></h2>
+     <p class="mt-4 max-w-4xl text-lg leading-8 text-[#254358]">Sorting is the process of arranging data in a particular order. The most common orders are ascending order and descending order.</p>
+     <div class="mt-8 grid gap-5 lg:grid-cols-2">
+      <article class="rounded-2xl border border-[#d7d0bf] bg-white p-6">
+       <p class="font-bold text-[#166a6a]">Ascending order</p>
+       <div class="mt-4 flex flex-wrap gap-2"><span class="number-tile">10</span><span class="number-tile">20</span><span class="number-tile">30</span><span class="number-tile">40</span><span class="number-tile">50</span>
+       </div>
+      </article>
+      <article class="rounded-2xl border border-[#d7d0bf] bg-white p-6">
+       <p class="font-bold text-[#c9574e]">Descending order</p>
+       <div class="mt-4 flex flex-wrap gap-2"><span class="number-tile">50</span><span class="number-tile">40</span><span class="number-tile">30</span><span class="number-tile">20</span><span class="number-tile">10</span>
+       </div>
+      </article>
+     </div>
+     <div class="mt-9 grid gap-6 lg:grid-cols-3">
+      <article class="rounded-2xl bg-[#132638] p-6 text-white">
+       <h3 class="text-2xl font-bold">Why sort?</h3>
+       <ul class="mt-4 space-y-2 leading-6 text-slate-200">
+        <li>• Makes searching faster</li>
+        <li>• Organises records</li>
+        <li>• Helps find duplicates</li>
+        <li>• Improves many algorithms</li>
+        <li>• Makes report generation easier</li>
+       </ul>
+      </article>
+      <article class="rounded-2xl border border-[#d7d0bf] bg-[#fffaf0] p-6">
+       <h3 class="text-2xl font-bold">Key terms</h3>
+       <p class="mt-3 text-sm leading-6"><strong>Stable:</strong> keeps equal elements in their original order.</p>
+       <p class="mt-3 text-sm leading-6"><strong>In-place:</strong> uses only a small amount of extra memory.</p>
+       <p class="mt-3 text-sm leading-6"><strong>Adaptive:</strong> becomes faster when input is partially sorted.</p>
+      </article>
+      <article class="rounded-2xl border border-[#d7d0bf] bg-[#f2fbfa] p-6">
+       <h3 class="text-2xl font-bold">Classification</h3>
+       <p class="mt-3 text-sm leading-6"><strong>Internal sorting:</strong> all data fits in main memory.</p>
+       <p class="mt-3 text-sm leading-6"><strong>External sorting:</strong> data is too large to fit in memory.</p>
+       <p class="mt-3 text-sm leading-6"><strong>Comparison sorting:</strong> uses comparisons between elements.</p>
+       <p class="mt-3 text-sm leading-6"><strong>Non-comparison sorting:</strong> uses digits or values.</p>
+      </article>
+     </div>
+     <div class="mt-12 grid gap-8 xl:grid-cols-2">
+      <article class="lesson-card sorting rounded-2xl bg-white p-6 sm:p-8">
+       <h3 data-template-id="bubble-sort-title" class="canva-text font-bold"></h3>
+       <p class="mt-4 leading-7">Bubble sort repeatedly compares adjacent elements and swaps them when they are in the wrong order. After each pass, the largest unsorted value moves to the end.</p>
+       <div class="mt-6 rounded-xl bg-[#f3eee1] p-5">
+        <p class="font-bold">Sort: 5, 1, 4, 2</p>
+        <div class="mt-4 flex flex-wrap gap-2"><span class="number-tile">5</span><span class="number-tile">1</span><span class="number-tile">4</span><span class="number-tile">2</span>
+        </div>
+        <p class="mt-4 text-sm">Pass 1: 1, 4, 2, <strong>5</strong></p>
+        <p class="mt-1 text-sm">Pass 2: <strong>1, 2, 4, 5</strong></p>
+       </div>
+       <pre class="code-block mt-6"><code>BUBBLE_SORT(A, n)
 
-    <!-- Insertion Sort -->
-    <div class="algo-card">
-        <div class="algo-title">B. Insertion Sort</div>
-        <h4>Definition</h4>
-        <ul>
-            <li><strong>Strategy:</strong> Incremental insertion sorting paradigm.</li>
-            <li><strong>Execution:</strong> Divides the target collection into sorted and unsorted zones.</li>
-            <li><strong>Behavior:</strong> Picks an element and shifts sorted elements right to insert it.</li>
-            <li><strong>Complexity:</strong> Time: Best O(n), Worst O(n²) | Space: O(1) workspace memory.</li>
-        </ul>
+for pass = 0 to n - 2
+    swapped = false
 
-        <h4>Example Scenario</h4>
-        <p>Sorting array [8, 3, 5] with item 3 as key:<br>
-        Key = 3. Compare with 8 &rarr; 8 is larger, shift 8 right &rarr; [8, 8, 5].<br>
-        Insert key at index 0 &rarr; [3, 8, 5].</p>
+    for i = 0 to n - pass - 2
+        if A[i] &gt; A[i + 1]
+            swap A[i], A[i + 1]
+            swapped = true
 
-        <h4>Algorithm</h4>
-        <div class="block-box">1. Loop i from 1 to N-1 to select the current key = Array[i].
-2. Initialize j = i - 1.
-3. While j >= 0 and Array[j] > key, shift Array[j+1] = Array[j] and decrement j.
-4. Place Array[j+1] = key.</div>
+    if swapped == false
+        break</code></pre>
+       <p class="mt-5 rounded-xl bg-[#dff1ef] p-4 text-sm"><strong>Complexity:</strong> Best O(n) with optimisation; average and worst O(n²); space O(1).</p>
+       <details class="mt-5 rounded-xl border border-[#d7d0bf] p-4"><summary>Advantages and disadvantages</summary>
+        <p class="mt-3 text-sm leading-6">Easy to understand, stable, and in-place. However, it is very slow for large arrays because it makes many comparisons and swaps.</p>
+       </details>
+      </article>
+      <article class="lesson-card sorting rounded-2xl bg-white p-6 sm:p-8">
+       <h3 data-template-id="insertion-sort-title" class="canva-text font-bold"></h3>
+       <p class="mt-4 leading-7">Insertion sort builds a sorted portion one element at a time. Each new element is inserted into its correct position among the previously sorted values.</p>
+       <div class="mt-6 rounded-xl bg-[#f3eee1] p-5">
+        <p class="font-bold">Sort: 5, 2, 4, 6, 1</p>
+        <p class="mt-4 text-sm">5 | 2 4 6 1</p>
+        <p class="mt-1 text-sm">2 5 | 4 6 1</p>
+        <p class="mt-1 text-sm">2 4 5 | 6 1</p>
+        <p class="mt-1 text-sm font-bold text-[#166a6a]">1 2 4 5 6</p>
+       </div>
+       <pre class="code-block mt-6"><code>INSERTION_SORT(A, n)
+
+for i = 1 to n - 1
+    key = A[i]
+    j = i - 1
+
+    while j &gt;= 0 and A[j] &gt; key
+        A[j + 1] = A[j]
+        j = j - 1
+
+    A[j + 1] = key</code></pre>
+       <p class="mt-5 rounded-xl bg-[#dff1ef] p-4 text-sm"><strong>Complexity:</strong> Best O(n); average and worst O(n²); space O(1).</p>
+       <details class="mt-5 rounded-xl border border-[#d7d0bf] p-4"><summary>Advantages and disadvantages</summary>
+        <p class="mt-3 text-sm leading-6">Stable, in-place, and efficient for small or nearly sorted data. It becomes slow for large randomly ordered arrays.</p>
+       </details>
+      </article>
+      <article class="lesson-card sorting rounded-2xl bg-white p-6 sm:p-8">
+       <h3 data-template-id="selection-sort-title" class="canva-text font-bold"></h3>
+       <p class="mt-4 leading-7">Selection sort divides the array into sorted and unsorted portions. It repeatedly chooses the smallest element in the unsorted portion and places it first.</p>
+       <div class="mt-6 rounded-xl bg-[#f3eee1] p-5">
+        <p class="font-bold">Sort: 64, 25, 12, 22, 11</p>
+        <p class="mt-4 text-sm">Pass 1: <strong>11</strong> | 25 12 22 64</p>
+        <p class="mt-1 text-sm">Pass 2: 11 <strong>12</strong> | 25 22 64</p>
+        <p class="mt-1 text-sm">Final: <strong>11 12 22 25 64</strong></p>
+       </div>
+       <pre class="code-block mt-6"><code>SELECTION_SORT(A, n)
+
+for i = 0 to n - 2
+    minIndex = i
+
+    for j = i + 1 to n - 1
+        if A[j] &lt; A[minIndex]
+            minIndex = j
+
+    swap A[i], A[minIndex]</code></pre>
+       <p class="mt-5 rounded-xl bg-[#dff1ef] p-4 text-sm"><strong>Complexity:</strong> Best, average, and worst O(n²); space O(1).</p>
+       <details class="mt-5 rounded-xl border border-[#d7d0bf] p-4"><summary>Advantages and disadvantages</summary>
+        <p class="mt-3 text-sm leading-6">Uses little extra memory and performs only O(n) swaps. It is not adaptive and always performs O(n²) comparisons.</p>
+       </details>
+      </article>
+      <article class="lesson-card sorting rounded-2xl bg-white p-6 sm:p-8">
+       <h3 data-template-id="merge-sort-title" class="canva-text font-bold"></h3>
+       <p class="mt-4 leading-7">Merge sort is a divide-and-conquer algorithm. It divides an array into smaller pieces, sorts them recursively, and merges the sorted subarrays.</p>
+       <div class="mt-6 rounded-xl bg-[#f3eee1] p-5 text-sm leading-7">
+        <p class="font-bold">Sort: 38, 27, 43, 3, 9, 82, 10</p>
+        <p class="mt-3">Divide into small subarrays until each contains one element.</p>
+        <p class="mt-1">Merge: 27 38 + 3 43 → 3 27 38 43</p>
+        <p class="mt-1 font-bold text-[#166a6a]">Final: 3 9 10 27 38 43 82</p>
+       </div>
+       <pre class="code-block mt-6"><code>MERGE_SORT(A, low, high)
+
+if low &gt;= high
+    return
+
+mid = (low + high) / 2
+MERGE_SORT(A, low, mid)
+MERGE_SORT(A, mid + 1, high)
+MERGE(A, low, mid, high)</code></pre>
+       <p class="mt-5 rounded-xl bg-[#dff1ef] p-4 text-sm"><strong>Complexity:</strong> Best, average, and worst O(n log n); extra space O(n).</p>
+       <details class="mt-5 rounded-xl border border-[#d7d0bf] p-4"><summary>Advantages and disadvantages</summary>
+        <p class="mt-3 text-sm leading-6">Guaranteed O(n log n), stable, and useful for linked lists and external sorting. It requires extra memory.</p>
+       </details>
+      </article>
+      <article class="lesson-card sorting rounded-2xl bg-white p-6 sm:p-8">
+       <h3 data-template-id="quick-sort-title" class="canva-text font-bold"></h3>
+       <p class="mt-4 leading-7">Quick sort selects a pivot and rearranges the array so smaller elements go left and larger elements go right. The same process is then applied recursively.</p>
+       <div class="mt-6 rounded-xl bg-[#f3eee1] p-5">
+        <p class="font-bold">Sort: 10, 7, 8, 9, 1, 5</p>
+        <p class="mt-3 text-sm">Choose 5 as pivot → 1, 5, 10, 7, 8, 9</p>
+        <p class="mt-1 text-sm">Sort right side using pivot 9.</p>
+        <p class="mt-1 text-sm font-bold text-[#166a6a]">Final: 1, 5, 7, 8, 9, 10</p>
+       </div>
+       <pre class="code-block mt-6"><code>QUICK_SORT(A, low, high)
+
+if low &lt; high
+    p = PARTITION(A, low, high)
+    QUICK_SORT(A, low, p - 1)
+    QUICK_SORT(A, p + 1, high)</code></pre>
+       <p class="mt-5 rounded-xl bg-[#dff1ef] p-4 text-sm"><strong>Complexity:</strong> Best/average O(n log n); worst O(n²); average space O(log n).</p>
+       <details class="mt-5 rounded-xl border border-[#d7d0bf] p-4"><summary>Advantages and disadvantages</summary>
+        <p class="mt-3 text-sm leading-6">Very fast in practice, usually in-place, and cache-friendly. Its performance depends on pivot selection and can degrade to O(n²).</p>
+       </details>
+      </article>
+      <article class="lesson-card sorting rounded-2xl bg-white p-6 sm:p-8">
+       <h3 data-template-id="radix-sort-title" class="canva-text font-bold"></h3>
+       <p class="mt-4 leading-7">Radix sort is a non-comparison algorithm that sorts integer values digit by digit. LSD radix sort starts with the units digit and moves left.</p>
+       <div class="mt-6 rounded-xl bg-[#f3eee1] p-5 text-sm leading-7">
+        <p class="font-bold">Sort: 170, 45, 75, 90, 802, 24, 2, 66</p>
+        <p class="mt-3">Units digit → 170, 90, 802, 2, 24, 45, 75, 66</p>
+        <p>Tens digit → 802, 2, 24, 45, 66, 170, 75, 90</p>
+        <p class="font-bold text-[#166a6a]">Hundreds digit → 2, 24, 45, 66, 75, 90, 170, 802</p>
+       </div>
+       <pre class="code-block mt-6"><code>RADIX_SORT(A, n)
+
+find the largest element
+place = 1
+
+while largest / place &gt; 0
+    sort by digit at place
+    place = place * 10</code></pre>
+       <p class="mt-5 rounded-xl bg-[#dff1ef] p-4 text-sm"><strong>Complexity:</strong> O(d(n + b)), where d is digits and b is the base.</p>
+       <details class="mt-5 rounded-xl border border-[#d7d0bf] p-4"><summary>Advantages and disadvantages</summary>
+        <p class="mt-3 text-sm leading-6">Very efficient for suitable integers and fixed-length strings, but needs extra memory and is less suitable for negatives or floating-point values.</p>
+       </details>
+      </article>
+      <article class="lesson-card sorting rounded-2xl bg-white p-6 sm:p-8">
+       <h3 data-template-id="heap-sort-title" class="canva-text font-bold"></h3>
+       <p class="mt-4 leading-7">Heap sort uses a binary heap. For ascending order, it builds a max heap, repeatedly moves the root to the sorted end, and restores the heap property.</p>
+       <div class="mt-6 rounded-xl bg-[#f3eee1] p-5 text-sm leading-7">
+        <p class="font-bold">Max heap array: 20, 15, 18, 8, 10, 5, 12</p>
+        <p class="mt-3">Move 20 to the sorted area, then heapify the remaining values.</p>
+        <p class="font-bold text-[#166a6a]">Final: 5, 8, 10, 12, 15, 18, 20</p>
+       </div>
+       <pre class="code-block mt-6"><code>HEAP_SORT(A, n)
+
+build a max heap from A
+
+for end = n - 1 down to 1
+    swap A[0], A[end]
+    reduce heap size
+    heapify the root</code></pre>
+       <p class="mt-5 rounded-xl bg-[#dff1ef] p-4 text-sm"><strong>Complexity:</strong> O(n log n) in all cases; space O(1).</p>
+       <details class="mt-5 rounded-xl border border-[#d7d0bf] p-4"><summary>Advantages and disadvantages</summary>
+        <p class="mt-3 text-sm leading-6">Guaranteed O(n log n), in-place, and useful when worst-case time matters. It is not stable and often slower than quick sort in practice.</p>
+       </details>
+      </article>
+      <article class="lesson-card sorting rounded-2xl bg-white p-6 sm:p-8">
+       <h3 data-template-id="shell-sort-title" class="canva-text font-bold"></h3>
+       <p class="mt-4 leading-7">Shell sort improves insertion sort by comparing elements separated by a gap. The gap is reduced until it becomes 1.</p>
+       <div class="mt-6 rounded-xl bg-[#f3eee1] p-5 text-sm leading-7">
+        <p class="font-bold">Sort: 9, 8, 3, 7, 5, 6, 4, 1</p>
+        <p class="mt-3">Gap sequence for n = 8: <strong>4, 2, 1</strong></p>
+        <p>At gap 1, ordinary insertion sort finishes the ordering.</p>
+        <p class="font-bold text-[#166a6a]">Final: 1, 3, 4, 5, 6, 7, 8, 9</p>
+       </div>
+       <pre class="code-block mt-6"><code>SHELL_SORT(A, n)
+
+gap = n / 2
+
+while gap &gt; 0
+    perform gap-based insertion sort
+    gap = gap / 2</code></pre>
+       <p class="mt-5 rounded-xl bg-[#dff1ef] p-4 text-sm"><strong>Complexity:</strong> Depends on the gap sequence; worst case may be O(n²); space O(1).</p>
+       <details class="mt-5 rounded-xl border border-[#d7d0bf] p-4"><summary>Advantages and disadvantages</summary>
+        <p class="mt-3 text-sm leading-6">Faster than insertion sort for medium-sized data and uses no extra array. It is not stable and has less predictable performance.</p>
+       </details>
+      </article>
+      <article class="lesson-card sorting rounded-2xl bg-white p-6 sm:p-8">
+       <h3 data-template-id="tree-sort-title" class="canva-text font-bold"></h3>
+       <p class="mt-4 leading-7">Tree sort inserts values into a binary search tree. An inorder traversal—left subtree, root, right subtree—then returns the values in sorted order.</p>
+       <div class="mt-6 rounded-xl bg-[#f3eee1] p-5 text-sm leading-7">
+        <p class="font-bold">Input: 50, 30, 70, 20, 40, 60, 80</p>
+        <p class="mt-3">Build the binary search tree by inserting each value.</p>
+        <p>Inorder traversal: 20 → 30 → 40 → 50 → 60 → 70 → 80</p>
+       </div>
+       <pre class="code-block mt-6"><code>TREE_SORT(A, n)
+
+create an empty BST
+
+for each element A[i]
+    insert A[i] into the tree
+
+perform inorder traversal</code></pre>
+       <p class="mt-5 rounded-xl bg-[#dff1ef] p-4 text-sm"><strong>Complexity:</strong> Balanced tree O(n log n); skewed tree O(n²); space O(n).</p>
+       <details class="mt-5 rounded-xl border border-[#d7d0bf] p-4"><summary>Advantages and disadvantages</summary>
+        <p class="mt-3 text-sm leading-6">Inorder traversal naturally gives sorted output and supports dynamic insertion. A skewed tree can produce O(n²) performance.</p>
+       </details>
+      </article>
+     </div>
     </div>
-
-    <!-- Selection Sort -->
-    <div class="algo-card">
-        <div class="algo-title">C. Selection Sort</div>
-        <h4>Definition</h4>
-        <ul>
-            <li><strong>Strategy:</strong> Minimum-selection boundary sort structure.</li>
-            <li><strong>Execution:</strong> Scans the remaining items to locate the absolute smallest element.</li>
-            <li><strong>Behavior:</strong> Swaps the identified minimum value into the current boundary slot.</li>
-            <li><strong>Complexity:</strong> Time: Best/Worst O(n²) | Space: O(1) in-place allocation.</li>
-        </ul>
-
-        <h4>Example Scenario</h4>
-        <p>Sorting array [7, 2, 4]:<br>
-        Pass 1: Scan from index 0 &rarr; Minimum found is 2 &rarr; Swap with index 0 &rarr; [2, 7, 4].<br>
-        Pass 2: Scan from index 1 &rarr; Minimum found is 4 &rarr; Swap with index 1 &rarr; [2, 4, 7].</p>
-
-        <h4>Algorithm</h4>
-        <div class="block-box">1. Loop i from 0 to N-1.
-2. Assume current minimum index min_idx = i.
-3. Inner loop j from i+1 to N-1 to find smaller elements.
-4. If Array[j] < Array[min_idx], update min_idx = j.
-5. Swap values of Array[i] and Array[min_idx].</div>
+   </section>
+   <section id="comparison" class="w-full max-w-7xl mx-auto px-5 pb-12 sm:px-8 sm:pb-16">
+    <div data-template-id="comparison-section" class="canva-section rounded-3xl border border-[#d7d0bf] bg-[#fffdf7] p-6 shadow-sm sm:p-10">
+     <h2 data-template-id="comparison-heading" class="canva-text font-bold"></h2>
+     <p class="mt-4 max-w-4xl leading-7 text-[#254358]">Use this table to compare the major sorting algorithms covered in Unit 5.</p>
+     <div class="mt-7 overflow-x-auto">
+      <table class="comparison-table w-full min-w-[850px] border-collapse text-sm">
+       <thead>
+        <tr>
+         <th>Algorithm</th>
+         <th>Best case</th>
+         <th>Average case</th>
+         <th>Worst case</th>
+         <th>Extra space</th>
+         <th>Stable</th>
+         <th>In-place</th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr>
+         <td class="font-semibold">Bubble sort</td>
+         <td>O(n)</td>
+         <td>O(n²)</td>
+         <td>O(n²)</td>
+         <td>O(1)</td>
+         <td>Yes</td>
+         <td>Yes</td>
+        </tr>
+        <tr>
+         <td class="font-semibold">Insertion sort</td>
+         <td>O(n)</td>
+         <td>O(n²)</td>
+         <td>O(n²)</td>
+         <td>O(1)</td>
+         <td>Yes</td>
+         <td>Yes</td>
+        </tr>
+        <tr>
+         <td class="font-semibold">Selection sort</td>
+         <td>O(n²)</td>
+         <td>O(n²)</td>
+         <td>O(n²)</td>
+         <td>O(1)</td>
+         <td>Usually no</td>
+         <td>Yes</td>
+        </tr>
+        <tr>
+         <td class="font-semibold">Merge sort</td>
+         <td>O(n log n)</td>
+         <td>O(n log n)</td>
+         <td>O(n log n)</td>
+         <td>O(n)</td>
+         <td>Yes</td>
+         <td>No</td>
+        </tr>
+        <tr>
+         <td class="font-semibold">Quick sort</td>
+         <td>O(n log n)</td>
+         <td>O(n log n)</td>
+         <td>O(n²)</td>
+         <td>O(log n) avg.</td>
+         <td>No</td>
+         <td>Usually yes</td>
+        </tr>
+        <tr>
+         <td class="font-semibold">Radix sort</td>
+         <td>O(d(n+b))</td>
+         <td>O(d(n+b))</td>
+         <td>O(d(n+b))</td>
+         <td>O(n+b)</td>
+         <td>Yes</td>
+         <td>No</td>
+        </tr>
+        <tr>
+         <td class="font-semibold">Heap sort</td>
+         <td>O(n log n)</td>
+         <td>O(n log n)</td>
+         <td>O(n log n)</td>
+         <td>O(1)</td>
+         <td>No</td>
+         <td>Yes</td>
+        </tr>
+        <tr>
+         <td class="font-semibold">Shell sort</td>
+         <td>Depends on gap</td>
+         <td>Depends on gap</td>
+         <td>Usually O(n²)</td>
+         <td>O(1)</td>
+         <td>No</td>
+         <td>Yes</td>
+        </tr>
+        <tr>
+         <td class="font-semibold">Tree sort</td>
+         <td>O(n log n)</td>
+         <td>O(n log n)</td>
+         <td>O(n²)</td>
+         <td>O(n)</td>
+         <td>Depends</td>
+         <td>No</td>
+        </tr>
+       </tbody>
+      </table>
+     </div>
+     <h3 class="mt-10 text-3xl font-bold">Choosing a sorting algorithm</h3>
+     <div class="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <div class="rounded-xl border border-[#d7d0bf] bg-[#fffaf0] p-5">
+       <strong>Small data</strong><br><span class="text-sm">Insertion sort</span>
+      </div>
+      <div class="rounded-xl border border-[#d7d0bf] bg-[#fffaf0] p-5">
+       <strong>Nearly sorted data</strong><br><span class="text-sm">Insertion sort</span>
+      </div>
+      <div class="rounded-xl border border-[#d7d0bf] bg-[#fffaf0] p-5">
+       <strong>Stable sorting needed</strong><br><span class="text-sm">Merge sort</span>
+      </div>
+      <div class="rounded-xl border border-[#d7d0bf] bg-[#fffaf0] p-5">
+       <strong>Guaranteed O(n log n), low memory</strong><br><span class="text-sm">Heap sort</span>
+      </div>
+      <div class="rounded-xl border border-[#d7d0bf] bg-[#fffaf0] p-5">
+       <strong>General internal sorting</strong><br><span class="text-sm">Quick sort</span>
+      </div>
+      <div class="rounded-xl border border-[#d7d0bf] bg-[#fffaf0] p-5">
+       <strong>Integer data with limited digits</strong><br><span class="text-sm">Radix sort</span>
+      </div>
+      <div class="rounded-xl border border-[#d7d0bf] bg-[#fffaf0] p-5">
+       <strong>Medium-sized data</strong><br><span class="text-sm">Shell sort</span>
+      </div>
+      <div class="rounded-xl border border-[#d7d0bf] bg-[#fffaf0] p-5">
+       <strong>Linked lists</strong><br><span class="text-sm">Merge sort</span>
+      </div>
+      <div class="rounded-xl border border-[#d7d0bf] bg-[#fffaf0] p-5">
+       <strong>Fewer swaps required</strong><br><span class="text-sm">Selection sort</span>
+      </div>
+     </div>
     </div>
-
-    <!-- SECTION 3 -->
-    <div class="sort-category-title">3. Advanced Sorting Algorithms (O(n log n))</div>
-
-    <!-- Merge Sort -->
-    <div class="algo-card">
-        <div class="algo-title">A. Merge Sort</div>
-        <h4>Definition</h4>
-        <ul>
-            <li><strong>Strategy:</strong> Divide-and-conquer structural sorting method.</li>
-            <li><strong>Execution:</strong> Recursively cuts arrays into equal halves until single values remain.</li>
-            <li><strong>Behavior:</strong> Combines sorted halves back together using a two-pointer merge routine.</li>
-            <li><strong>Complexity:</strong> Time: Best/Worst O(n log n) | Space: O(n) auxiliary buffer array.</li>
-        </ul>
-
-        <h4>Example Scenario</h4>
-        <p>Sorting [6, 2, 8, 1]:<br>
-        Split: [6, 2] and [8, 1] &rarr;, [2], [8], [1].<br>
-        Merge: Combine [6] and [2] &rarr;. Combine [8] and [1] &rarr; [1, 8].<br>
-        Final Merge: Combine [2, 6] and [1, 8] &rarr; [1, 2, 6, 8].</p>
-
-        <h4>Algorithm</h4>
-        <div class="block-box">1. If low >= right, return immediately (base case reached).
-2. Calculate mid = low + (right - low) / 2.
-3. Recursively call MergeSort on the left half (low to mid).
-4. Recursively call MergeSort on the right half (mid+1 to right).
-5. Call Merge(low, mid, right) to combine both sections into a sorted array.</div>
+   </section>
+   <section id="external-sorting" class="w-full max-w-7xl mx-auto px-5 pb-16 sm:px-8 sm:pb-20">
+    <div data-template-id="external-section" class="canva-section rounded-3xl bg-[#132638] p-6 text-white shadow-xl sm:p-10">
+     <div class="max-w-4xl">
+      <p class="font-bold uppercase tracking-[0.14em] text-[#efaa28]">Unit 5 · Final Topic</p>
+      <h2 data-template-id="external-sorting-heading" class="canva-text mt-3 font-bold"></h2>
+      <p class="mt-4 text-lg leading-8 text-slate-200">External sorting is used when data is too large to fit completely in main memory. For example, a 500 GB input file cannot be fully loaded into a computer with 8 GB RAM.</p>
+     </div>
+     <div class="mt-9 grid gap-6 lg:grid-cols-2">
+      <article class="rounded-2xl bg-white/10 p-6">
+       <h3 class="text-2xl font-bold">External merge sort</h3>
+       <p class="mt-3 leading-7 text-slate-200">The most common external sorting technique has two major phases:</p>
+       <ol class="mt-4 space-y-3 text-slate-100">
+        <li><strong class="text-[#efaa28]">1. Run generation:</strong> Read blocks that fit in memory, sort each block, and write each sorted block as a run.</li>
+        <li><strong class="text-[#efaa28]">2. Run merging:</strong> Merge the sorted runs until one final sorted output file remains.</li>
+       </ol>
+      </article>
+      <article class="rounded-2xl bg-white/10 p-6">
+       <h3 class="text-2xl font-bold">Worked example</h3>
+       <p class="mt-3 text-slate-200">Memory can hold four elements at a time.</p>
+       <div class="mt-4 space-y-3 text-sm">
+        <p><strong>Input:</strong> 45, 12, 89, 33, 7, 66, 20, 51</p>
+        <p><strong>Run 1:</strong> 12, 33, 45, 89</p>
+        <p><strong>Run 2:</strong> 7, 20, 51, 66</p>
+        <p class="rounded-lg bg-[#efaa28] px-3 py-2 font-bold text-[#132638]"><strong>Final merge:</strong> 7, 12, 20, 33, 45, 51, 66, 89</p>
+       </div>
+      </article>
+     </div>
+     <div class="mt-8 grid gap-4 text-center sm:grid-cols-5">
+      <div class="rounded-xl border border-slate-500 p-4 text-sm font-semibold">
+       Large input file
+      </div>
+      <div class="flex items-center justify-center text-[#efaa28]">
+       <i data-lucide="arrow-right" class="h-6 w-6"></i>
+      </div>
+      <div class="rounded-xl border border-slate-500 p-4 text-sm font-semibold">
+       Memory-sized blocks
+      </div>
+      <div class="flex items-center justify-center text-[#efaa28]">
+       <i data-lucide="arrow-right" class="h-6 w-6"></i>
+      </div>
+      <div class="rounded-xl border border-slate-500 p-4 text-sm font-semibold">
+       Sorted runs
+      </div>
+     </div>
+     <div class="mt-4 flex justify-center text-[#efaa28]">
+      <i data-lucide="arrow-down" class="h-6 w-6"></i>
+     </div>
+     <div class="mx-auto max-w-md rounded-xl bg-[#166a6a] p-4 text-center font-bold">
+      Merge sorted runs → Final sorted file
+     </div>
+     <div class="mt-9 grid gap-5 md:grid-cols-2">
+      <article class="rounded-2xl border border-slate-600 p-6">
+       <h3 class="text-2xl font-bold">Why external sorting is needed</h3>
+       <ul class="mt-4 space-y-2 text-slate-200">
+        <li>• Input files are very large.</li>
+        <li>• Main memory is limited.</li>
+        <li>• Database files and logs need sorting.</li>
+        <li>• Data is stored on disks or external storage.</li>
+       </ul>
+      </article>
+      <article class="rounded-2xl border border-slate-600 p-6">
+       <h3 class="text-2xl font-bold">Main performance concern</h3>
+       <p class="mt-4 leading-7 text-slate-200">External sorting performance depends mainly on disk reads, disk writes, available memory, number of runs, and number of merge passes. The main objective is to minimise disk input/output operations.</p>
+      </article>
+     </div>
     </div>
+   </section>
+  </main>
+  <footer data-template-id="footer-section" class="canva-footer w-full bg-[#0c1b28] px-5 py-8 text-center text-slate-300 sm:px-8">
+   <p data-template-id="footer-text" class="canva-text"></p>
+  </footer><button id="scroll-top" type="button" aria-label="Scroll back to the top" class="fixed bottom-5 right-5 rounded-full bg-[#efaa28] p-3 text-[#132638] shadow-lg focus:outline-none focus:ring-2 focus:ring-[#132638] focus:ring-offset-2"> <i data-lucide="arrow-up" class="h-5 w-5"></i> </button>
+  <script src="/_sdk/5629ea66dc55d54f.editing_sdk.js" integrity="sha512-snPYzGvgiTEMUBOb+HlCBkFeiM0IRX4hcgA78wvalhC0WnJtaX+RCbosPWtNqZsZ7sZ9NwN0oePZYa+IlMwa+w=="></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      lucide.createIcons();
 
-       <!-- Advanced Sorting Section Cont. -->
-    <div class="algo-card">
-        <div class="algo-title">B. Quick Sort</div>
-        <h4>Definition</h4>
-        <ul>
-            <li><strong>Strategy:</strong> Pivot-partitioning divide-and-conquer sort layout.</li>
-            <li><strong>Execution:</strong> Selects an element as a pivot to organize the surrounding data parameters.</li>
-            <li><strong>Behavior:</strong> Moves smaller values left of the pivot element and larger values to the right.</li>
-            <li><strong>Complexity:</strong> Time: Best O(n log n), Worst O(n²) | Space: O(log n) stack allocation.</li>
-        </ul>
+      const scrollTopButton = document.getElementById("scroll-top");
 
-        <h4>Example Scenario</h4>
-        <p>Partitioning array [4, 1, 3] with pivot value 3:<br>
-        Move elements smaller than 3 to the left, larger to the right.<br>
-        Rearranged array configuration maps out as: [1] &rarr; [3] &rarr; [4].</p>
+      window.addEventListener("scroll", function () {
+        scrollTopButton.classList.toggle("visible", window.scrollY > 500);
+      }, { passive: true });
 
-        <h4>Algorithm</h4>
-        <div class="block-box">1. If low < high, find partition index p = Partition(low, high).
-2. Recursively call QuickSort on the left sub-array (low to p-1).
-3. Recursively call QuickSort on the right sub-array (p+1 to high).
-4. Partition steps through data, swaps values around the pivot, and returns its final index.</div>
-    </div>
-
-    <div class="algo-card">
-        <div class="algo-title">C. Heap Sort</div>
-        <h4>Definition</h4>
-        <ul>
-            <li><strong>Strategy:</strong> Priority binary tree sorting strategy.</li>
-            <li><strong>Execution:</strong> Converts the unsorted array structural elements into a max-heap structure.</li>
-            <li><strong>Behavior:</strong> Repeatedly extracts the largest root node to build out the sorted index spaces.</li>
-            <li><strong>Complexity:</strong> Time: Best/Worst O(n log n) | Space: O(1) in-place array sequence.</li>
-        </ul>
-
-        <h4>Example Scenario</h4>
-        <p>Sorting array [4, 10, 3]:<br>
-        Build Max-Heap &rarr; Root is 10 &rarr; Layout: [10, 4, 3].<br>
-        Swap root with last item &rarr; Move 10 to end &rarr; [3, 4 | 10].<br>
-        Re-heapify remaining elements &rarr; Extract 4 &rarr; [3 | 4, 10].</p>
-
-        <h4>Algorithm</h4>
-        <div class="block-box">1. Build a Max-Heap from the array data (Heapify process).
-2. Loop i from N-1 down to 1.
-3. Swap the root element Array[0] with Array[i].
-4. Call Heapify(Array, size=i, root=0) to rebalance the remaining tree.</div>
-    </div>
-
-    <div class="algo-card">
-        <div class="algo-title">D. Tree Sort</div>
-        <h4>Definition</h4>
-        <ul>
-            <li><strong>Strategy:</strong> Binary Search Tree (BST) sorting implementation.</li>
-            <li><strong>Execution:</strong> Inserts all array elements sequentially into an empty BST structure.</li>
-            <li><strong>Behavior:</strong> Performs an inorder traversal loop to read the elements out in order.</li>
-            <li><strong>Complexity:</strong> Time: Best O(n log n), Worst O(n²) | Space: O(n) dynamic pointer nodes.</li>
-        </ul>
-
-        <h4>Example Scenario</h4>
-        <p>Sorting values [3, 7, 9]:<br>
-        Insert 7 as root &rarr; Insert 3 to left &rarr; Insert 9 to right.<br>
-        Inorder Traversal (Left, Root, Right) outputs: 3, 7, 9.</p>
-
-        <h4>Algorithm</h4>
-        <div class="block-box">1. Instantiate an empty Binary Search Tree.
-2. Loop through array elements and insert each value into the BST.
-3. Run an Inorder Traversal function on the root node to write values back into the array.</div>
-    </div>
-
-    <!-- SECTION 4 -->
-    <div class="sort-category-title">4. Non-Comparison & External Sorting</div>
-
-    <div class="algo-card">
-        <div class="algo-title">A. Radix Sort</div>
-        <h4>Definition</h4>
-        <ul>
-            <li><strong>Strategy:</strong> Non-comparison integer sorting algorithm.</li>
-            <li><strong>Execution:</strong> Processes numbers digit by digit, avoiding direct element-to-element comparisons.</li>
-            <li><strong>Subroutine:</strong> Leverages a stable sorting algorithm backend, such as Counting Sort.</li>
-            <li><strong>Complexity:</strong> Time: O(d · (n + k)) | Space: O(n + k) auxiliary working buffer space.</li>
-        </ul>
-
-        <h4>Example Scenario</h4>
-        <p>Sorting values [142, 61, 8] by digit position:<br>
-        Pass 1 (Ones Place): Sorts based on 2, 1, 8 &rarr; [61, 142, 8].<br>
-        Pass 2 (Tens Place): Sorts based on 6, 4, 0 &rarr; [8, 142, 61].<br>
-        Pass 3 (Hundreds Place): Sorts based on 0, 1, 0 &rarr;. (Sorted)</p>
-
-        <h4>Algorithm</h4>
-        <div class="block-box">1. Find the maximum number in the array to determine the number of digits d.
-2. Loop through each digit position, from least significant to most significant.
-3. Run stable CountingSort on the array for the current digit position.</div>
-    </div>
-
-    <div class="algo-card">
-        <div class="algo-title">B. Shell Sort</div>
-        <h4>Definition</h4>
-        <ul>
-            <li><strong>Strategy:</strong> Interval-based structural extension of Insertion Sort.</li>
-            <li><strong>Execution:</strong> Compares and adjusts elements separated by a diminishing gap sequence.</li>
-            <li><strong>Behavior:</strong> Allows elements to make large jumps toward their target index coordinates early.</li>
-            <li><strong>Complexity:</strong> Time: Best O(n log n), Worst O(n²) | Space: O(1) in-place footprint.</li>
-        </ul>
-
-        <h4>Algorithm</h4>
-        <div class="block-box">1. Initialize gap size gap = N / 2.
-2. While gap > 0, run an interval insertion sort pass for that gap size.
-3. Reduce the interval space by updating gap = gap / 2 and repeat until gap == 0.</div>
-    </div>
-
-    <div class="algo-card">
-        <div class="algo-title">C. External Sorting</div>
-        <h4>Definition</h4>
-        <ul>
-            <li><strong>Strategy:</strong> Secondary storage buffer data management paradigm.</li>
-            <li><strong>Constraint:</strong> Specifically utilized when datasets are too massive to fit inside RAM.</li>
-            <li><strong>Execution:</strong> Sorts data in manageable chunks and merges them back onto disk files.</li>
-        </ul>
-
-        <h4>Example Scenario</h4>
-        <p>Sorting a massive 50GB file using only 4GB of working RAM:<br>
-        Read 4GB segments into RAM, sort internally, and save them as temporary files on disk.<br>
-        Read the beginning of all temporary files into RAM simultaneously to merge them into a sorted 50GB output file.</p>
-
-        <h4>Algorithm</h4>
-        <div class="block-box">1. Read chunks of the large file that fit into RAM.
-2. Sort each chunk using an internal method (like QuickSort) and save as a temporary run file.
-3. Load the first elements of all temporary run files into memory.
-4. Merge the runs together using a multi-way merge process and write the sorted output to the disk.</div>
-    </div>
+      scrollTopButton.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    });
+  </script>
+ </body>
+</html>

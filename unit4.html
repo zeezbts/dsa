@@ -3,332 +3,1157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introduction to Trees - Data Structures</title>
+    <title>Data Structures & Algorithms Q&A</title>
     <style>
-          img {
-  
-  max-width: 100%;
-  height: auto; 
-  object-fit: cover; 
-  display: block; 
-  image-rendering: -webkit-optimize-contrast;
-}
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #34495e;
-            --bg-color: #f8f9fa;
-            --text-color: #333333;
-            --accent-color: #2ecc71; /* Emerald green for Trees topic */
-            --border-color: #e2e8f0;
-        }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            margin: 0;
-            padding: 20px;
-            scroll-behavior: smooth;
-        }
-
-        .container {
+            color: #333;
             max-width: 800px;
             margin: 0 auto;
-            background: #ffffff;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        main {
+            background: #fff;
             padding: 40px;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
-
         h1 {
-            color: var(--primary-color);
-            border-bottom: 3px solid var(--accent-color);
+            color: #1a365d;
+            border-bottom: 2px solid #e2e8f0;
             padding-bottom: 10px;
-            margin-top: 0;
+            margin-bottom: 30px;
         }
-
-        h2 {
-            color: var(--secondary-color);
-            margin-top: 35px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 5px;
-        }
-
-        h3 {
-            color: var(--secondary-color);
+        dt {
+            font-weight: bold;
             font-size: 1.1rem;
-            margin-top: 20px;
+            color: #2c5282;
+            margin-top: 25px;
         }
-
-        p {
-            margin-bottom: 1.5rem;
+        dd {
+            margin-left: 0;
+            margin-bottom: 15px;
+            color: #4a5568;
         }
-
-        ul, ol {
-            margin-bottom: 1.5rem;
+        pre {
+            background-color: #f7fafc;
+            border-left: 4px solid #4299e1;
+            padding: 10px;
+            font-family: "Courier New", Courier, monospace;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        ul {
+            margin-top: 5px;
+            margin-bottom: 5px;
             padding-left: 20px;
         }
-
-        li {
-            margin-bottom: 0.5rem;
+    </style>
+     <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+            color: #333;
         }
-
-        .toc-box {
-            background-color: #f8fafc;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 20px;
-            margin: 25px 0;
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 8px;
         }
-
-        .toc-title {
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-            font-size: 1.1rem;
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
         }
-
-        .toc-box ul {
-            list-style-type: none;
-            padding-left: 0;
-            margin-bottom: 0;
+        h3 {
+            color: #34495e;
+            margin-top: 20px;
         }
-
-        .toc-box li {
-            margin-bottom: 8px;
-        }
-
-        .toc-box li a {
-            color: var(--accent-color);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .toc-box li a:hover {
-            text-decoration: underline;
-            color: var(--primary-color);
-        }
-
-        .algo-block {
-            background-color: #f1f3f5;
-            border-left: 4px solid var(--accent-color);
+        pre {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
             padding: 15px;
-            border-radius: 0 4px 4px 0;
-            margin-bottom: 1.5rem;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            border-radius: 4px;
+            margin: 10px 0;
         }
-
-        .algo-block ol {
-            margin-bottom: 0;
+        .tree-diagram {
+            background-color: #fdfefe;
+            border: 1px dashed #bdc3c7;
+            padding: 15px;
+            font-family: monospace;
+            white-space: pre;
+            text-align: center;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-size: 1.1em;
+        }
+        .result-box {
+            background-color: #fcf3cf;
+            border-left: 4px solid #f1c40f;
+            padding: 10px 15px;
+            margin: 10px 0;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+        .complexity {
+            background-color: #e8f4fd;
+            border: 1px solid #d2e7fa;
+            padding: 12px 15px;
+            border-radius: 4px;
+            margin-top: 25px;
+            font-weight: bold;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 4px;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
+<main>
+    <article>
+        <h1>Part A – 2-Mark Questions and Answers</h1>
+        
+        <dl>
+            <dt>1. Define a tree.</dt>
+            <dd>A tree is a non-linear data structure made up of nodes connected by edges. It represents hierarchical relationships. A tree has no cycles.</dd>
 
-    <h1>Understanding the Tree Data Structure</h1>
-    
-    <nav class="toc-box">
-        <div class="toc-title">Table of Contents</div>
-        <ul>
-            <li><a href="#intro">1. Introduction to Trees</a></li>
-            <li><a href="#types">2. Types of Trees</a></li>
-            <li><a href="#conversion">3. Creating a Binary Tree from a General Tree</a></li>
-            <li><a href="#traversal">4. Traversing a Binary Tree</a></li>
-            <li><a href="#huffman">5. Huffman's Tree</a></li>
-            <li><a href="#applications">6. Applications of Trees</a></li>
-        </ul>
-    </nav>
+            <dt>2. What is the root of a tree?</dt>
+            <dd>The root is the topmost node of a tree. It is the only node that has no parent.</dd>
 
-    <p>A <strong>Tree</strong> is a non-linear, hierarchical data structure composed of nodes connected by edges. Unlike sequential arrays, stacks, or queues, trees organize data in parent-child relationships.</p>
+            <dt>3. What is a leaf node?</dt>
+            <dd>
+                A leaf node is a node that has no children.
+                <br><strong>Example:</strong>
+<pre>
+    A
+   / \
+  B   C
+</pre>
+                Here, B and C are leaf nodes.
+            </dd>
 
-    <h2 id="intro">1. Introduction to Trees</h2>
-    <p>To understand trees, it is essential to look at their structural components:</p>
-    <ul>
-        <li><strong>Root:</strong> The topmost node of a tree with no parent node.</li>
-        <li><strong>Edge:</strong> The connecting link or structural line between a parent and child node.</li>
-        <li><strong>Leaf Node:</strong> An external node that does not have any child nodes.</li>
-        <li><strong>Internal Node:</strong> A node that contains at least one child node underneath it.</li>
-        <li><strong>Height:</strong> The total number of edges on the longest path from that node down to a leaf node.</li>
-    </ul>
+            <dt>4. Define a binary tree.</dt>
+            <dd>A binary tree is a tree in which every node has at most two children. They are called the left child and right child.</dd>
 
-    <h2 id="types">2. Types of Trees</h2>
-    <p>Trees are classified based on architectural constraints and value ordering rules:</p>
-    <ul>
-        <li><strong>General Tree:</strong> A tree structure where each node can have an infinite number of child nodes.</li>
-        <li><strong>Binary Tree:</strong> A structured tree where every parent node can have a maximum of two children.</li>
-        <li><strong>Binary Search Tree (BST):</strong> An ordered binary tree where left child nodes are smaller, and right child nodes are larger than the parent.</li>
-        <li><strong>AVL Tree:</strong> A self-balancing search tree where sub-tree height differences never exceed one.</li>
-    </ul>
+            <dt>5. What is a full binary tree?</dt>
+            <dd>A full binary tree is a binary tree in which every node has either zero children or two children. No node has exactly one child.</dd>
 
-    <h2 id="conversion">3. Creating a Binary Tree from a General Tree</h2>
-    <p>A general tree can be systematically mapped into a clean binary tree layout using the <strong>Left-Child, Right-Sibling (LCRS)</strong> algorithm:</p>
-    <div class="algo-block">
-        <ol>
-            <li><strong>Identify Left Child:</strong> Connect the leftmost direct child node as the absolute <em>Left Child</em> in the binary tree map.</li>
-            <li><strong>Identify Sibling:</strong> Connect the immediate right sibling of that child node as its new <em>Right Child</em>.</li>
-            <li><strong>Isolate:</strong> Wipe out all other old structural paths to leave a clean dual-branch configuration.</li>
-        </ol>
-    </div>
+            <dt>6. What is a complete binary tree?</dt>
+            <dd>A complete binary tree is a tree in which all levels are completely filled except possibly the last level. The last level is filled from left to right.</dd>
 
-    <h2 id="traversal">4. Traversing a Binary Tree</h2>
-    <p>Traversing means visiting every single node in a tree exactly once. This is handled using Depth-First Search (DFS) or Level-Order (BFS) paradigms.</p>
-    
-    <h3>Depth-First Search (DFS) Options</h3>
-    <ul>
-        <li><strong>Inorder (Left, Root, Right):</strong> Recursively runs left, prints the root, then evaluates right branches.</li>
-        <li><strong>Preorder (Root, Left, Right):</strong> Evaluates the root immediately before drilling down left and right subtrees.</li>
-        <li><strong>Postorder (Left, Right, Root):</strong> Completely evaluates child leaves first before printing their respective parent root.</li>
-    </ul>
+            <dt>7. What is a skewed binary tree?</dt>
+            <dd>
+                A skewed binary tree is a tree in which every node has only one child. It may be:
+                <ul>
+                    <li>Left-skewed</li>
+                    <li>Right-skewed</li>
+                </ul>
+                A skewed tree behaves like a linked list.</dd>
 
-    <h2 id="huffman">5. Huffman's Tree</h2>
-    <p>A <strong>Huffman Tree</strong> is an extended binary tree structure built explicitly to execute data compression algorithms securely.</p>
-    <ul>
-        <li><strong>Optimal Prefix Tree:</strong> Ensures no symbol sequence code matches the starting prefix of another character code.</li>
-        <li><strong>Frequency Sorting:</strong> Assigns short bits to recurring characters and deep paths to rare items to minimize storage footprints.</li>
-    </ul>
+            <dt>8. What is a binary search tree?</dt>
+            <dd>A Binary Search Tree, or BST, is a binary tree in which: <br><strong>Left subtree values &lt; Root value &lt; Right subtree values</strong></dd>
 
-    <h2 id="applications">6. Applications of Trees</h2>
-    <p>Trees act as foundational layers across software compilers, database structures, and runtime systems:</p>
-    <ul>
-        <li><strong>File Systems:</strong> Powers directory folder mappings across computer operating system architectures.</li>
-        <li><strong>Database Indexing:</strong> Employs balanced B/B+ trees to look up data rows inside high-volume tables.</li>
-        <li><strong>Document Object Model (DOM):</strong> Organizes elements of an HTML page into a manageable object hierarchy.</li>
-        <li><strong>Expression Interpretation:</strong> Parses algorithmic operations neatly to compile order-of-operation execution scripts.</li>
-    </ul>
+            <dt>9. What is tree traversal?</dt>
+            <dd>
+                Tree traversal is the process of visiting every node in a tree exactly once. The main traversals are:
+                <ul>
+                    <li>Preorder</li>
+                    <li>Inorder</li>
+                    <li>Postorder</li>
+                    <li>Level-order</li>
+                </ul>
+            </dd>
 
-</div>
+            <dt>10. Write the order of preorder traversal.</dt>
+            <dd>The order of preorder traversal is: <strong>Root &rarr; Left subtree &rarr; Right subtree</strong>. It is also called NLR.</dd>
 
+            <dt>11. Write the order of inorder traversal.</dt>
+            <dd>The order of inorder traversal is: <strong>Left subtree &rarr; Root &rarr; Right subtree</strong>. It is also called LNR.</dd>
 
-<div class="container">
+            <dt>12. Write the order of postorder traversal.</dt>
+            <dd>The order of postorder traversal is: <strong>Left subtree &rarr; Right subtree &rarr; Root</strong>. It is also called LRN.</dd>
 
-    <h1>AVL Tree Operations </h1>
+            <dt>13. Which traversal gives sorted output in a BST?</dt>
+            <dd>Inorder traversal gives the elements of a Binary Search Tree in sorted order.</dd>
 
-    <!-- 1. Searching Operation -->
-    <h2>1. Searching Operation</h2>
-    <div class="section-block">
-        <p><strong>Definition:</strong> A standard binary search traversal down a guaranteed balanced tree structure.</p>
-        <p><strong>Example:</strong> Finding 25 in a tree with root 20 &rarr; 25 is larger, go right to node 30 &rarr; 25 is smaller, go left to node 25 &rarr; Match found.</p>
-        <h3>Algorithm:</h3>
-        <div class="algo-box">
-            <ol>
-                <li>Start at the root node.</li>
-                <li>If root is empty or matches target, return current node.</li>
-                <li>If target is smaller than current node, branch left.</li>
-                <li>If target is larger than current node, branch right.</li>
-            </ol>
-        </div>
-    </div>
+            <dt>14. What is a threaded binary tree?</dt>
+            <dd>A threaded binary tree uses NULL pointer fields to store links to the inorder predecessor or inorder successor. It allows traversal without recursion or a stack.</dd>
 
-    <!-- 2. Insertion Operation -->
-    <h2>2. Insertion Operation</h2>
-    <div class="section-block">
-        <p><strong>Definition:</strong> Inserts a node at a leaf slot and backtracks to apply rotations if balance is lost.</p>
-        <p><strong>Example:</strong> Inserting 10 into path 30 &rarr; 20 makes 30 unbalanced (BF = +2) &rarr; Triggers a right rotation, pivoting 20 to the new root with children 10 and 30.</p>
-        <h3>Algorithm:</h3>
-        <div class="algo-box">
-            <ol>
-                <li>Traverse down to find the correct empty leaf boundary and insert the node.</li>
-                <li>Backtrack up the tree path, updating the height of each ancestor node.</li>
-                <li>Calculate the balance factor (Left Height - Right Height).</li>
-                <li>If unbalanced, apply the matching rotation profile: LL, RR, LR, or RL.</li>
-            </ol>
-        </div>
-    </div>
+            <dt>15. What is an AVL tree?</dt>
+            <dd>An AVL tree is a self-balancing Binary Search Tree. For every node, the balance factor must be: <strong>-1, 0, or +1</strong></dd>
 
-    <!-- 3. Deletion Operation -->
-    <h2>3. Deletion Operation</h2>
-    <div class="section-block">
-        <p><strong>Definition:</strong> Removes a target node and traces back to the root fixing cascading balance failures.</p>
-        <p><strong>Example:</strong> Deleting node 40 with two children (35 and 50) &rarr; Swap value 40 with its inorder successor 50 &rarr; Delete the duplicate leaf node 50 &rarr; Rebalance ancestor paths.</p>
-        <h3>Algorithm:</h3>
-        <div class="algo-box">
-            <ol>
-                <li>Search and locate the target node.</li>
-                <li>If it is a leaf, remove it. If it has one child, bypass it.</li>
-                <li>If it has two children, swap with its inorder successor, then delete that successor leaf.</li>
-                <li>Step backward along the path to recalculate heights and trigger corrective rotations.</li>
-            </ol>
-        </div>
-    </div>
+            <dt>16. Define balance factor.</dt>
+            <dd>The balance factor of a node is: <strong>Balance Factor = Height of left subtree &minus; Height of right subtree</strong></dd>
 
+            <dt>17. What are the AVL rotations?</dt>
+            <dd>
+                The four AVL rotations are:
+                <ul>
+                    <li>LL rotation</li>
+                    <li>RR rotation</li>
+                    <li>LR rotation</li>
+                    <li>RL rotation</li>
+                </ul>
+            </dd>
 
-<img src="tree alv.jpg" alt="" srcset="">
-</div>
+            <dt>18. What is a heap?</dt>
+            <dd>
+                A heap is a complete binary tree that follows a special ordering property. Types:
+                <ul>
+                    <li>Max heap</li>
+                    <li>Min heap</li>
+                </ul>
+            </dd>
 
-<div class="container">
+            <dt>19. What is a max heap?</dt>
+            <dd>In a max heap, the value of every parent is greater than or equal to the values of its children. The largest element is at the root.</dd>
 
-    <h1>Heaps and Graphs Core Architecture</h1>
-    
-    <nav class="toc-box">
-        <div class="toc-title">Table of Contents</div>
-        <ul>
-            <li><a href="#binary-heaps">1. Binary Heaps Foundation</a></li>
-            <li><a href="#heap-apps">2. Applications of Heaps</a></li>
-            <li><a href="#graph-terminology">3. Graph Technical Terminology</a></li>
-            <li><a href="#graph-rep">4. Structural Representation of Graphs</a></li>
-            <li><a href="#graph-traversal">5. Graph Traversal Algorithms</a></li>
-        </ul>
-    </nav>
+            <dt>20. What is a min heap?</dt>
+            <dd>In a min heap, the value of every parent is less than or equal to the values of its children. The smallest element is at the root.</dd>
 
-    <h2 id="binary-heaps">1. Binary Heaps Foundation</h2>
-    <p>A <strong>Binary Heap</strong> is a specialized complete binary tree structure used to achieve fast constant-time performance tracking of structural min or max key elements:</p>
-    <ul>
-        <li><strong>Structural Completeness:</strong> Perfectly fully packed across all levels from top down, filling left to right on the terminal line.</li>
-        <li><strong>Max-Heap Property:</strong> Every parent node's data key is greater than or equal to its child elements.</li>
-        <li><strong>Min-Heap Property:</strong> Every parent node's data key is less than or equal to its child elements.</li>
-        <li><strong>Dynamic Array Indexing:</strong> For node index <code>i</code>, left child maps to <code>2i + 1</code>, right child maps to <code>2i + 2</code>, and parent node is found at <code>floor((i - 1) / 2)</code>.</li>
-    </ul>
+            <dt>21. What is Huffman coding?</dt>
+            <dd>
+                Huffman coding is a lossless data compression technique. It assigns:
+                <ul>
+                    <li>Short codes to frequently occurring characters</li>
+                    <li>Long codes to less frequently occurring characters</li>
+                </ul>
+            </dd>
 
-    <h2 id="heap-apps">2. Applications of Heaps</h2>
-    <p>Heaps provide efficient, constant-time access to maximum or minimum elements:</p>
-    <ul>
-        <li><strong>Priority Queue Engines:</strong> Coordinates multi-task execution orders where jobs are handled according to numeric weight rank parameters.</li>
-        <li><strong>Heapsort:</strong> A highly stable internal sorting method providing a reliable runtime speed of <code>O(n log n)</code>.</li>
-        <li><strong>Graph Path Solvers:</strong> Speeds up shortest distance path exploration loops within Dijkstra's and Prim's algorithm scripts.</li>
-    </ul>
+            <dt>22. What is a graph?</dt>
+            <dd>A graph is a non-linear data structure consisting of vertices and edges. It is represented as: <strong>G = (V, E)</strong> where V is the set of vertices and E is the set of edges.</dd>
 
-    <h2 id="graph-terminology">3. Graph Technical Terminology</h2>
-    <p>A <strong>Graph</strong> is a non-linear network structure made up of vertices linked together by edge channels:</p>
-    <ul>
-        <li><strong>Vertex (Node):</strong> The individual structural data item container element.</li>
-        <li><strong>Edge:</strong> The geometric trace path or connection link running between two adjacent vertices.</li>
-        <li><strong>Directed / Undirected:</strong> Determines whether traffic flows along an explicit path direction or moves bidirectionally.</li>
-        <li><strong>Path & Cycle:</strong> A path traces a sequence of unique edges; a cycle is a path that returns to its starting node.</li>
-    </ul>
+            <dt>23. What is a vertex?</dt>
+            <dd>A vertex is a node in a graph. For example, in a graph representing cities, each city is a vertex.</dd>
 
-    <h2 id="graph-rep">4. Structural Representation of Graphs</h2>
-    <p>Graphs are stored in memory using memory layouts tailored to the density of their edges:</p>
-    <div class="algo-block">
-        <ul>
-            <li><strong>Adjacency Matrix:</strong> A 2D array representation tracking links in <code>O(1)</code> time, though it demands a high <code>O(V&sup2;)</code> spatial allocation footprint.</li>
-            <li><strong>Adjacency List:</strong> An array of linked nodes optimizing size layout down to <code>O(V + E)</code>, making it ideal for sparse networks.</li>
-        </ul>
-    </div>
+            <dt>24. What is an edge?</dt>
+            <dd>An edge is a connection between two vertices. For example, a road connecting two cities can be represented as an edge.</dd>
 
-    <h2 id="graph-traversal">5. Graph Traversal Algorithms</h2>
-    <p>Traversing means visiting all accessible vertex nodes across a network graph sequentially without falling into endless cyclic loops.</p>
-    
-    <h3>Breadth-First Search (BFS)</h3>
-    <p>Explores the graph layer-by-layer, evaluating all neighbors at the current depth level before moving down into deeper branches.</p>
-    <div class="algo-block">
-        <ul>
-            <li><strong>Data Structure:</strong> Managed using an explicit <strong>FIFO Queue</strong>.</li>
-            <li><strong>Use Case:</strong> Safely computes shortest paths across unweighted graphs.</li>
-        </ul>
-    </div>
+            <dt>25. What is a directed graph?</dt>
+            <dd>A directed graph is a graph in which every edge has a direction. Example: <strong>A &rarr; B</strong> (This means the edge goes from A to B).</dd>
 
-    <h3>Depth-First Search (DFS)</h3>
-    <p>Dives straight down a single path branch as deeply as possible, backtracking up to investigate hidden side branches only when a path hits a dead end.</p>
-    <div class="algo-block">
-        <ul>
-            <li><strong>Data Structure:</strong> Implemented via <strong>Recursion</strong> or a system memory <strong>Stack</strong>.</li>
-            <li><strong>Use Case:</strong> Detects cycles and maps out topological scheduling orders.</li>
-        </ul>
-    </div>
+            <dt>26. What is an undirected graph?</dt>
+            <dd>An undirected graph is a graph in which edges do not have a direction. Example: <strong>A &mdash; B</strong> (The connection can be travelled in both directions).</dd>
 
-</div>
+            <dt>27. What is an adjacency matrix?</dt>
+            <dd>An adjacency matrix is a two-dimensional array used to represent a graph. If an edge exists between two vertices, the corresponding matrix position contains 1; otherwise, it contains 0.</dd>
+
+            <dt>28. What is an adjacency list?</dt>
+            <dd>
+                An adjacency list stores each vertex along with a list of its adjacent vertices.
+                <br><strong>Example:</strong>
+                <ul>
+                    <li>A: B, C</li>
+                    <li>B: A, D</li>
+                </ul>
+            </dd>
+
+            <dt>29. What is BFS?</dt>
+            <dd>BFS stands for Breadth-First Search. It visits vertices level by level and uses a queue.</dd>
+
+            <dt>30. What is DFS?</dt>
+            <dd>DFS stands for Depth-First Search. It visits a vertex and then explores as deeply as possible before backtracking. It uses recursion or a stack.</dd>
+
+            <dt>31. What is selection sort?</dt>
+            <dd>Selection sort repeatedly selects the smallest element from the unsorted portion and places it in the correct position. Its time complexity is: <strong>O(n²)</strong></dd>
+
+            <dt>32. How many edges are present in a tree with n nodes?</dt>
+            <dd>A tree with n nodes has: <strong>n &minus; 1 edges</strong></dd>
+        </dl>
+    </article>
+</main>
 
 </body>
+</html>
+<main style="max-width: 850px; margin: 20px auto; padding: 20px; font-family: system-ui, sans-serif; line-height: 1.6; color: #333;">
+    <article>
+        <h1 style="color: #1a365d; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 30px;">Part B – 5-Mark Questions and Answers</h1>
+        
+        <ol style="padding-left: 20px;">
+            <!-- Question 1 -->
+            <li style="margin-bottom: 35px;">
+                <h2 style="color: #2c5282; font-size: 1.3rem; margin-top: 0; border-bottom: 1px dashed #cbd5e0; padding-bottom: 5px;">Explain the basic terminology of trees.</h2>
+                <p>Consider the following tree:</p>
+<pre style="background-color: #f7fafc; border-left: 4px solid #4299e1; padding: 12px; font-family: monospace; overflow-x: auto; color: #2d3748;">
+          A
+        / | \
+       B  C  D
+         / \
+        E   F
+</pre>
+                <ul style="padding-left: 20px; list-style-type: disc;">
+                    <li><strong>Root:</strong> The topmost node. A is the root.</li>
+                    <li><strong>Parent:</strong> A node having children. A is the parent of B, C, and D.</li>
+                    <li><strong>Child:</strong> A node below a parent. B, C, and D are children of A.</li>
+                    <li><strong>Sibling:</strong> Nodes having the same parent. B, C, and D are siblings.</li>
+                    <li><strong>Leaf:</strong> A node with no children. B, D, E, and F are leaves.</li>
+                    <li><strong>Internal node:</strong> A node having at least one child. A and C are internal nodes.</li>
+                    <li><strong>Degree:</strong> Number of children of a node.</li>
+                    <li><strong>Path:</strong> A sequence of connected nodes.</li>
+                    <li><strong>Depth:</strong> Distance from the root to a node.</li>
+                    <li><strong>Height:</strong> Length of the longest path from a node to a leaf.</li>
+                </ul>
+            </li>
+
+            <!-- Question 2 -->
+            <li style="margin-bottom: 35px;">
+                <h2 style="color: #2c5282; font-size: 1.3rem; border-bottom: 1px dashed #cbd5e0; padding-bottom: 5px;">Explain the types of binary trees.</h2>
+                <ul style="padding-left: 20px; list-style-type: disc;">
+                    <li style="margin-bottom: 10px;"><strong>Full Binary Tree:</strong> Every node has either zero or two children.</li>
+                    <li style="margin-bottom: 10px;"><strong>Complete Binary Tree:</strong> All levels are full except possibly the last. The last level is filled from left to right.</li>
+                    <li style="margin-bottom: 10px;"><strong>Perfect Binary Tree:</strong> All internal nodes have two children and all leaf nodes are at the same level.</li>
+                    <li style="margin-bottom: 10px;"><strong>Skewed Binary Tree:</strong> Each node has only one child.</li>
+                    <li style="margin-bottom: 10px;"><strong>Balanced Binary Tree:</strong> The heights of the left and right subtrees are nearly equal.</li>
+                    <li style="margin-bottom: 10px;"><strong>Binary Search Tree:</strong> The left subtree contains smaller values and the right subtree contains larger values.</li>
+                </ul>
+            </li>
+
+            <!-- Question 3 -->
+            <li style="margin-bottom: 35px;">
+                <h2 style="color: #2c5282; font-size: 1.3rem; border-bottom: 1px dashed #cbd5e0; padding-bottom: 5px;">Explain the linked representation of a binary tree.</h2>
+                <p>In linked representation, every node contains:</p>
+                <ul style="padding-left: 20px; list-style-type: disc;">
+                    <li>Data field</li>
+                    <li>Pointer to the left child</li>
+                    <li>Pointer to the right child</li>
+                </ul>
+                
+                <h3 style="color: #2b6cb0; font-size: 1.1rem; margin-top: 15px;">Structure</h3>
+<pre style="background-color: #f7fafc; border-left: 4px solid #4299e1; padding: 12px; font-family: monospace; overflow-x: auto; color: #2d3748;">
+struct node
+{
+    int data;
+    struct node *left;
+    struct node *right;
+};
+</pre>
+
+                <h3 style="color: #2b6cb0; font-size: 1.1rem; margin-top: 15px;">Example</h3>
+<pre style="background-color: #f7fafc; border-left: 4px solid #4299e1; padding: 12px; font-family: monospace; overflow-x: auto; color: #2d3748;">
+          10
+         /  \
+        5    20
+</pre>
+                <p>The left pointer of node 10 points to node 5, and the right pointer points to node 20.</p>
+
+                <h3 style="color: #2b6cb0; font-size: 1.1rem; margin-top: 15px;">Advantages</h3>
+                <ul style="padding-left: 20px; list-style-type: disc;">
+                    <li>Dynamic memory allocation</li>
+                    <li>Easy insertion and deletion</li>
+                    <li>Suitable for irregular trees</li>
+                    <li>No need for continuous memory</li>
+                </ul>
+
+                <h3 style="color: #2b6cb0; font-size: 1.1rem; margin-top: 15px;">Disadvantages</h3>
+                <ul style="padding-left: 20px; list-style-type: disc;">
+                    <li>Extra memory is needed for pointers.</li>
+                    <li>Direct access to a node is not possible.</li>
+                </ul>
+            </li>
+
+            <!-- Question 4 -->
+            <li style="margin-bottom: 35px;">
+                <h2 style="color: #2c5282; font-size: 1.3rem; border-bottom: 1px dashed #cbd5e0; padding-bottom: 5px;">Explain array representation of a binary tree.</h2>
+                <p>Array representation stores binary tree elements in an array. Using index starting from 1:</p>
+                <ul style="padding-left: 20px; list-style-type: disc;">
+                    <li>Root is at index 1.</li>
+                    <li>Left child of node i is at index 2i.</li>
+                    <li>Right child of node i is at index 2i + 1.</li>
+                    <li>Parent of node i is at index i/2.</li>
+                </ul>
+
+                <h3 style="color: #2b6cb0; font-size: 1.1rem; margin-top: 15px;">Example</h3>
+<pre style="background-color: #f7fafc; border-left: 4px solid #4299e1; padding: 12px; font-family: monospace; overflow-x: auto; color: #2d3748;">
+          A
+        /   \
+       B     C
+      / \
+     D   E
+</pre>
+                <p><strong>Array representation:</strong></p>
+                <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+                    <thead>
+                        <tr style="background-color: #ebf8ff;">
+                            <th style="border: 1px solid #cbd5e0; padding: 10px; color: #2b6cb0; text-align: left;">Index</th>
+                            <td style="border: 1px solid #cbd5e0; padding: 10px;">1</td>
+                            <td style="border: 1px solid #cbd5e0; padding: 10px;">2</td>
+                            <td style="border: 1px solid #cbd5e0; padding: 10px;">3</td>
+                            <td style="border: 1px solid #cbd5e0; padding: 10px;">4</td>
+                            <td style="border: 1px solid #cbd5e0; padding: 10px;">5</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th style="border: 1px solid #cbd5e0; padding: 10px; background-color: #ebf8ff; color: #2b6cb0; text-align: left;">Value</th>
+                            <td style="border: 1px solid #cbd5e0; padding: 10px;"><strong>A</strong></td>
+                            <td style="border: 1px solid #cbd5e0; padding: 10px;"><strong>B</strong></td>
+                            <td style="border: 1px solid #cbd5e0; padding: 10px;"><strong>C</strong></td>
+                            <td style="border: 1px solid #cbd5e0; padding: 10px;"><strong>D</strong></td>
+                            <td style="border: 1px solid #cbd5e0; padding: 10px;"><strong>E</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 style="color: #2b6cb0; font-size: 1.1rem; margin-top: 15px;">Advantages</h3>
+                <ul style="padding-left: 20px; list-style-type: disc;">
+                    <li>Easy to implement</li>
+                    <li>No pointer fields</li>
+                    <li>Fast access</li>
+                    <li>Suitable for complete binary trees and heaps</li>
+                </ul>
+
+                <h3 style="color: #2b6cb0; font-size: 1.1rem; margin-top: 15px;">Disadvantages</h3>
+                <ul style="padding-left: 20px; list-style-type: disc;">
+                    <li>Wastes memory for sparse trees.</li>
+                    <li>Not suitable for skewed trees.</li>
+                    <li>The array size may need to be fixed.</li>
+                </ul>
+            </li>
+
+            <!-- Question 5 -->
+            <li style="margin-bottom: 35px;">
+                <h2 style="color: #2c5282; font-size: 1.3rem; border-bottom: 1px dashed #cbd5e0; padding-bottom: 5px;">Explain how a general tree is converted into a binary tree.</h2>
+                <p>A general tree is converted using the left-child right-sibling method.</p>
+                
+                <h3 style="color: #2b6cb0; font-size: 1.1rem; margin-top: 15px;">Rules</h3>
+                <ul style="padding-left: 20px; list-style-type: disc;">
+                    <li>The first child becomes the left child.</li>
+                    <li>The next sibling becomes the right child.</li>
+                    <li>Other children are connected through right links.</li>
+                </ul>
+                <h3 style="color: #2b6cb0; font-size: 1.1rem; margin-top: 15px;">General Tree</h3>
+<pre style="background-color: #f7fafc; border-left: 4px solid #4299e1; padding: 12px; font-family: monospace; overflow-x: auto; color: #2d3748;">
+          A
+       /  |  \
+      B   C   D
+         / \
+        E   F
+</pre>
+
+<h3 style="color: #2b6cb0; font-size: 1.1rem; margin-top: 15px;">Binary Representation</h3>
+<pre style="background-color: #f7fafc; border-left: 4px solid #4299e1; padding: 12px; font-family: monospace; overflow-x: auto; color: #2d3748;">
+          A
+         /
+        B
+         \
+          C
+         / \
+        E   D
+         \
+          F
+</pre>
+<p>Here: <code>A.left = B</code>, <code>B.right = C</code>, <code>C.right = D</code>, <code>C.left = E</code>, <code>E.right = F</code>. This method uses only two pointers per node.</p>
+</li>
+
+
+<h2>7. Recursive Algorithms for Binary Tree Traversal</h2>
+    <p>All three recursive algorithms visit every node exactly once.</p>
+
+    <h3>Preorder Traversal</h3>
+    <pre>
+Preorder(root) {
+    if root != NULL {
+        visit(root);
+        Preorder(root->left);
+        Preorder(root->right);
+    }
+}</pre>
+
+    <h3>Inorder Traversal</h3>
+    <pre>
+Inorder(root) {
+    if root != NULL {
+        Inorder(root->left);
+        visit(root);
+        Inorder(root->right);
+    }
+}</pre>
+
+    <h3>Postorder Traversal</h3>
+    <pre>
+Postorder(root) {
+    if root != NULL {
+        Postorder(root->left);
+        Postorder(root->right);
+        visit(root);
+    }
+}</pre>
+
+    <div class="complexity">Time Complexity: O(n)</div>
+
+    <!-- Section 8 -->
+    <h2>8. Non-Recursive Algorithms for Binary Tree Traversal</h2>
+
+    <h3>Iterative Preorder</h3>
+    <pre>
+Preorder(root) {
+    if root == NULL return;
+    push root into stack;
+    while stack is not empty {
+        node = pop stack;
+        visit(node);
+        if node->right != NULL
+            push node->right;
+        if node->left != NULL
+            push node->left;
+    }
+}</pre>
+
+    <h3>Iterative Inorder</h3>
+    <pre>
+Inorder(root) {
+    stack = empty;
+    current = root;
+    while current != NULL or stack is not empty {
+        while current != NULL {
+            push current;
+            current = current->left;
+        }
+        current = pop stack;
+        visit(current);
+        current = current->right;
+    }
+}</pre>
+
+    <h3>Iterative Postorder (Using Two Stacks)</h3>
+    <pre>
+Postorder {
+    push root into stack1;
+    while stack1 is not empty {
+        node = pop stack1;
+        push node into stack2;
+        if node->left != NULL
+            push node->left into stack1;
+        if node->right != NULL
+            push node->right into stack1;
+    }
+    while stack2 is not empty {
+        node = pop stack2;
+        visit(node);
+    }
+}</pre>
+
+ <h1>Part C – 10-Mark Questions and Answers</h1>
+    
+    <h2>1. Explain binary tree traversal methods with an example and algorithms.</h2>
+    <p>Tree traversal refers to the systematic process of visiting every single node in a tree structure exactly once. Since trees are non-linear data structures, traversals can be carried out in different orderings.</p>
+
+    <h3>Example Binary Tree Structure</h3>
+    <p>The following sample binary tree is used to illustrate each traversal sequence:</p>
+    <pre>
+            A
+          /   \
+         B     C
+        / \   / \
+       D   E F   G</pre>
+
+    <!-- 1. Preorder Traversal -->
+    <h3>1. Preorder Traversal</h3>
+    <p>Preorder traversal processes the root node before moving to its subtrees. Ordering structure:</p>
+    <p><strong>Root &rarr; Left Subtree &rarr; Right Subtree</strong></p>
+    
+    <div class="result-box">Result Sequence: A B D E C F G</div>
+
+    <pre>
+Preorder(root)
+{
+    if root != NULL
+    {
+        visit(root);
+        Preorder(root->left);
+        Preorder(root->right);
+    }
+}</pre>
+
+    <p><strong>Common Applications:</strong></p>
+    <ul>
+        <li>Creating an exact copy of an existing tree structure</li>
+        <li>Generating prefix expressions (Polish notation) from mathematical expression trees</li>
+        <li>Displaying directory listings and file systems hierarchically</li>
+    </ul>
+
+    <!-- 2. Inorder Traversal -->
+    <h3>2. Inorder Traversal</h3>
+    <p>Inorder traversal sequences the nodes sequentially across the structure. Ordering structure:</p>
+    <p><strong>Left Subtree &rarr; Root &rarr; Right Subtree</strong></p>
+    
+    <div class="result-box">Result Sequence: D B E A F C G</div>
+
+    <pre>
+Inorder(root)
+{
+    if root != NULL
+    {
+        Inorder(root->left);
+        visit(root);
+        Inorder(root->right);
+    }
+}</pre>
+
+    <p><strong>Common Applications:</strong></p>
+    <ul>
+        <li>Producing sorted, ascending output sequences from a Binary Search Tree (BST)</li>
+        <li>Generating infix mathematical expressions matching traditional arithmetic notation</li>
+    </ul>
+
+    <!-- 3. Postorder Traversal -->
+    <h3>3. Postorder Traversal</h3>
+    <p>Postorder traversal processes the root node only after all its child subtrees are evaluated. Ordering structure:</p>
+    <p><strong>Left Subtree &rarr; Right Subtree &rarr; Root</strong></p>
+    
+    <div class="result-box">Result Sequence: D E B F G C A</div>
+
+    <pre>
+Postorder(root)
+{
+    if root != NULL
+    {
+        Postorder(root->left);
+        Postorder(root->right);
+        visit(root);
+    }
+}</pre>
+
+    <p><strong>Common Applications:</strong></p>
+    <ul>
+        <li>Safely deleting a tree bottom-up (ensuring child nodes are cleared before losing reference to parent pointers)</li>
+        <li>Generating postfix expressions (Reverse Polish notation)</li>
+        <li>Expression tree evaluations inside compilers</li>
+    </ul>
+
+      <!-- Section 2 -->
+    <h2>2. Explain recursive and non-recursive binary tree traversal.</h2>
+    <p>Binary tree traversals can be executed either using the system's implicit call stack via <strong>recursion</strong>, or manually using an explicit, user-defined stack data structure via <strong>iteration (non-recursive)</strong>.</p>
+
+    <h3>Example Binary Tree</h3>
+    <pre>
+          1
+        /   \
+       2     3
+      / \   / \
+     4   5 6   7</pre>
+
+    <h3>Recursive Traversal</h3>
+    <p>Recursive traversal relies completely on the runtime system call stack to store and manage prior activation frames during processing.</p>
+    <ul>
+        <li><strong>Preorder (Root &rarr; Left &rarr; Right):</strong> Visits root first, then recurses left, then right.<br><strong>Output:</strong> <code>1 2 4 5 3 6 7</code></li>
+        <li><strong>Inorder (Left &rarr; Root &rarr; Right):</strong> Recurses left, visits root, then recurses right.<br><strong>Output:</strong> <code>4 2 5 1 6 3 7</code></li>
+        <li><strong>Postorder (Left &rarr; Right &rarr; Root):</strong> Recurses left, then right, then visits root.<br><strong>Output:</strong> <code>4 5 2 6 7 3 1</code></li>
+    </ul>
+
+    <h3>Non-Recursive Traversal</h3>
+    <p>Non-recursive strategies substitute recursion with an explicit user-allocated Stack data structure to track back-tracking references manually.</p>
+    <ul>
+        <li><strong>Preorder:</strong> Push the root node onto the stack. While stack is not empty, pop and visit the node, push its right child, and then push its left child.</li>
+        <li><strong>Inorder:</strong> Traverse along the leftmost path pushing all intermediate nodes to the stack until a null pointer is reached. Pop a node, visit it, and move execution to its right child. Repeat.</li>
+        <li><strong>Postorder:</strong> Can be achieved cleanly using two separate stacks to reverse the natural top-down visitation path into bottom-up postorder tracking.</li>
+    </ul>
+
+    <!-- Section 3 -->
+    <h2>3. Explain BST operations: searching, insertion and deletion.</h2>
+    <p>A <strong>Binary Search Tree (BST)</strong> is a node-based binary tree data structure which possesses the following structural rule: for any given node, all keys in its left subtree are smaller than its key, and all keys in its right subtree are strictly larger than its key.</p>
+
+    <h3>Example BST Structure</h3>
+    <div class="tree-diagram">
+          50
+        /    \
+       30     70
+      / \     / \
+     20 40   60 80</div>
+
+    <h3>Searching Operation</h3>
+    <p>To trace and locate a value (e.g., <strong>60</strong>):</p>
+    <ol>
+        <li>Compare 60 against the root node (50). Since <code>60 &gt; 50</code>, branching moves right to 70.</li>
+        <li>Compare 60 against node 70. Since <code>60 &lt; 70</code>, branching moves left to 60.</li>
+        <li>Node 60 matches the target value and is successfully found.</li>
+    </ol>
+    <pre>
+Search(root, key)
+{
+    if root == NULL
+        return NOT FOUND;
+
+    if key == root->data
+        return FOUND;
+
+    if key &lt; root->data
+        return Search(root->left, key);
+
+    return Search(root->right, key);
+}</pre>
+
+    <h3>Insertion Operation</h3>
+    <p>To safely insert a new value (e.g., <strong>25</strong>), the tree must be scanned along its structural bounds until an available leaf leaf position is reached:</p>
+    <ul>
+        <li><code>25 &lt; 50</code> &rarr; shift left to 30.</li>
+        <li><code>25 &lt; 30</code> &rarr; shift left to 20.</li>
+        <li><code>25 &gt; 20</code> &rarr; shift right. Since the right child of 20 is null, insert 25 as the right child.</li>
+    </ul>
+    <pre>
+Insert(root, key)
+{
+    if root == NULL
+    {
+        create new node;
+        return new node;
+    }
+
+    if key &lt; root->data
+        root->left = Insert(root->left, key);
+    else if key &gt; root->data
+        root->right = Insert(root->right, key);
+
+    return root;
+}</pre>
+
+    <h3>Deletion Operation</h3>
+    <ul>
+        <li><strong>Case 1: Leaf Node:</strong> Disconnect and drop the link to the target node safely.</li>
+        <li><strong>Case 2: Node with One Child:</strong> Bypass the node by linking its parent directly to its immediate child.</li>
+        <li><strong>Case 3: Node with Two Children:</strong> Locate its <em>inorder successor</em> (the minimum element inside its right subtree). Replace the target node's data field with the successor's data, then recursively delete the duplicate node from the right subtree.</li>
+    </ul>
+
+    <h3>Algorithmic Time Complexity Table</h3>
+    <table border="1" cellpadding="8" style="border-collapse: collapse; width: 100%; margin-top: 15px; text-align: left;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th>BST Operation</th>
+                <th>Average Case Complexity</th>
+                <th>Worst Case Complexity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Searching</strong></td>
+                <td>O(log n)</td>
+                <td>O(n)</td>
+            </tr>
+            <tr>
+                <td><strong>Insertion</strong></td>
+                <td>O(log n)</td>
+                <td>O(n)</td>
+            </tr>
+            <tr>
+                <td><strong>Deletion</strong></td>
+                <td>O(log n)</td>
+                <td>O(n)</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><em>Note: The worst-case runtime bound O(n) occurs when values are added in a fully sequential order, turning the tree into a linear skewed chain.</em></p>
+    <!-- Section 4 -->
+    <h2>4. Explain threaded binary trees in detail with traversal algorithm.</h2>
+    <p>A <strong>Threaded Binary Tree</strong> is a variant of a standard binary tree designed to optimize traversal by repurposing empty child links. In a standard binary tree, nearly half of all structural pointers are set to <code>NULL</code>, which wastes memory. Threaded trees replace these blank pointers with specific references called <strong>threads</strong> that point back up to structural ancestors.</p>
+
+    <p>These specialized threads are configured to point directly to alternative positions:</p>
+    <ul>
+        <li>The node's <strong>Inorder Predecessor</strong> (via the left pointer field if it would otherwise be <code>NULL</code>).</li>
+        <li>The node's <strong>Inorder Successor</strong> (via the right pointer field if it would otherwise be <code>NULL</code>).</li>
+    </ul>
+
+    <h3>Structural Varieties</h3>
+    <ul>
+        <li><strong>Left Threaded Binary Tree:</strong> Only unused left pointers are converted to point to their inorder predecessors.</li>
+        <li><strong>Right Threaded Binary Tree:</strong> Only unused right pointers are converted to point to their inorder successors.</li>
+        <li><strong>Double Threaded Binary Tree:</strong> Both left and right unused pointers are converted into threads simultaneously.</li>
+    </ul>
+
+    <h3>Node Structure Configuration</h3>
+    <p>To distinguish between a normal child node reference and a thread pointer reference, boolean flag indicator variables must be added to the node definition:</p>
+    <pre>
+struct node
+{
+    int data;
+    struct node *left;
+    struct node *right;
+    int leftThread;  // Evaluates to 1 if the left link is an inorder thread; 0 if a normal child
+    int rightThread; // Evaluates to 1 if the right link is an inorder thread; 0 if a normal child
+};</pre>
+
+    <h3>Contextual Example</h3>
+    <p>Consider a simple tree containing three nodes:</p>
+    <div class="tree-diagram">
+          20
+         /  \
+        10   30</div>
+    <p>The standard static Inorder Sequence for this layout is: <strong>10, 20, 30</strong>. The tracking threads are applied as follows:</p>
+    <ul>
+        <li>The right child pointer of <strong>10</strong> is normally <code>NULL</code>. It is converted to point directly up to its inorder successor: <strong>20</strong> (with <code>rightThread = 1</code>).</li>
+        <li>The left child pointer of <strong>30</strong> is normally <code>NULL</code>. It is converted to point directly up to its inorder predecessor: <strong>20</strong> (with <code>leftThread = 1</code>).</li>
+        <li>Outer boundaries that lack further predecessors or successors (the left link of 10 and the right link of 30) continue to point directly to <code>NULL</code>.</li>
+    </ul>
+
+    <h3>Inorder Traversal Implementation</h3>
+    <p>Because these nodes point directly to their sequential neighbors, tracking routines can skip recursive stack loops entirely. Traversal uses a helper function to isolate the leftmost node, followed by sequential thread jumping:</p>
+    <pre>
+leftmost(root)
+{
+    while root->leftThread == 0
+        root = root->left;
+
+    return root;
+}
+
+ThreadedInorder(root)
+{
+    current = leftmost(root);
+
+    while current != NULL
+    {
+        visit(current);
+
+        // If a thread exists, step directly to the inorder successor
+        if current->rightThread == 1
+            current = current->right;
+        // Otherwise, locate the leftmost node of the right child subtree
+        else
+            current = leftmost(current->right);
+    }
+}</pre>
+
+    <h3>Trade-Off Evaluation</h3>
+    <table border="1" cellpadding="8" style="border-collapse: collapse; width: 100%; margin: 15px 0; text-align: left;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th style="width: 50%;">Advantages</th>
+                <th style="width: 50%;">Disadvantages</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <ul>
+                        <li>Eliminates recursion and stack memory requirements entirely.</li>
+                        <li>Improves linear forward sequencing speeds.</li>
+                        <li>Puts unused <code>NULL</code> memory slots to productive use.</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Significantly increases code complexity for node insertion.</li>
+                        <li>Significantly increases code complexity for node deletion.</li>
+                        <li>Requires extra memory to track the structural thread flags.</li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Section 5 -->
+    <h2>5. Explain AVL trees and their rotations.</h2>
+    <p>An <strong>AVL Tree</strong> (named after inventors Adelson-Velsky and Landis) is a self-balancing variant of a Binary Search Tree. It prevents performance degradation by ensuring the tree structure remains balanced during modifications.</p>
+    <p>The core structural integrity is verified using a metric known as the <strong>Balance Factor (BF)</strong>:</p>
+    <div class="complexity" style="text-align: center; font-family: monospace;">
+        Balance Factor = Height(Left Subtree) − Height(Right Subtree)
+    </div>
+    <p>To preserve structural balance, every individual node must maintain a balance factor of strictly <strong>-1, 0, or +1</strong>. Whenever an insertion or deletion pushes a node's balance factor to <strong>+2 or -2</strong>, structural balancing adjustments (rotations) are immediately triggered.</p>
+
+    <h3>1. Left-Left (LL) Case</h3>
+    <p><strong>Trigger Condition:</strong> An insertion takes place within the left subtree of the target's left child node, causing a positive imbalance.</p>
+    <p><strong>Remedy Strategy:</strong> Execute a single <strong>Right Rotation</strong> directly on the unbalanced parent node.</p>
+    <div style="display: flex; gap: 40px; margin: 15px 0; font-family: monospace; font-size: 1.1em;">
+        <div>
+            Unbalanced State:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30 (BF = +2)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;20<br>
+            &nbsp;&nbsp;&nbsp;/<br>
+            &nbsp;&nbsp;10
+        </div>
+        <div style="display: flex; align-items: center; font-weight: bold; color: #3498db;">
+            &rarr; Right Rotate &rarr;
+        </div>
+        <div>
+            Balanced Output State:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;\<br>
+            &nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;30
+        </div>
+    </div>
+
+    <h3>2. Right-Right (RR) Case</h3>
+    <p><strong>Trigger Condition:</strong> An insertion takes place within the right subtree of the target's right child node, causing a negative imbalance.</p>
+    <p><strong>Remedy Strategy:</strong> Execute a single <strong>Left Rotation</strong> directly on the unbalanced parent node.</p>
+    <div style="display: flex; gap: 40px; margin: 15px 0; font-family: monospace; font-size: 1.1em;">
+        <div>
+            Unbalanced State:<br>
+            &nbsp;&nbsp;10 (BF = -2)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;\<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30
+        </div>
+        <div style="display: flex; align-items: center; font-weight: bold; color: #3498db;">
+            &rarr; Left Rotate &rarr;
+        </div>
+        <div>
+            Balanced Output State:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;\<br>
+            &nbsp;&nbsp;&nbsp;10&nbsp;&nbsp;30
+        </div>
+    </div>
+
+    <h3>3. Left-Right (LR) Case</h3>
+    <p><strong>Trigger Condition:</strong> An insertion takes place within the right subtree of the target's left child node.</p>
+    <p><strong>Remedy Strategy:</strong> Execute a double rotation setup. First, apply a <strong>Left Rotation on the left child node</strong>, transforming it into an equivalent LL imbalance state. Then, apply a final <strong>Right Rotation on the unbalanced parent node</strong> to resolve the structure.</p>
+
+    <h3>4. Right-Left (RL) Case</h3>
+    <p><strong>Trigger Condition:</strong> An insertion takes place within the left subtree of the target's right child node.</p>
+    <p><strong>Remedy Strategy:</strong> Execute a double rotation setup. First, apply a <strong>Right Rotation on the right child node</strong>, transforming it into an equivalent RR imbalance state. Then, apply a final <strong>Left Rotation on the unbalanced parent node</strong> to resolve the structure.</p>
+
+    <h3>Primary Engineering Advantages</h3>
+    <ul>
+        <li>Guarantees strict structural balance, preventing degradation into performance-bottlenecked paths.</li>
+        <li>Maintains highly optimized search bounds across large lookup data sets.</li>
+        <li>Guarantees operational worst-case performance limits stay clamped at a predictable <strong>O(log n)</strong> scale for searching, inserting, and deleting records.</li>
+    </ul>
+    <!-- Section 6 -->
+    <h2>6. Explain heaps, heap operations and applications.</h2>
+    <p>A <strong>Heap</strong> is a specialized tree-based data structure that satisfies the heap property and must be a <strong>complete binary tree</strong>. A complete binary tree is completely filled at all levels, except possibly the lowest level, which is filled from left to right.</p>
+
+    <h3>1. Max Heap</h3>
+    <p>In a Max Heap, the key of the parent node is always <strong>greater than or equal to (&ge;)</strong> the keys of its children. The maximum element is always located at the root node.</p>
+    <div class="tree-diagram">
+          90
+        /    \
+       70     80
+      / \    /
+     40 50  60</div>
+
+    <h3>2. Min Heap</h3>
+    <p>In a Min Heap, the key of the parent node is always <strong>less than or equal to (&le;)</strong> the keys of its children. The minimum element is always located at the root node.</p>
+    <div class="tree-diagram">
+          10
+        /    \
+       20     30
+      / \    /
+     40 50  60</div>
+
+    <h3>Array-Based Representation</h3>
+    <p>Because a heap is a complete binary tree, it can be efficiently stored inside a continuous array using <strong>1-based indexing</strong> without wasting space on pointer addresses:</p>
+    <ul>
+        <li><strong>Parent Node Position:</strong> Found at index <code>i / 2</code></li>
+        <li><strong>Left Child Node Position:</strong> Found at index <code>2 &times; i</code></li>
+        <li><strong>Right Child Node Position:</strong> Found at index <code>(2 &times; i) + 1</code></li>
+    </ul>
+
+    <h3>Core Heap Operations</h3>
+    <ul>
+        <li><strong>Insertion:</strong> The new item is placed into the first available slot at the bottom-most right end of the tree to preserve the complete binary tree structure. It is then compared against its parent. If the ordering property is violated, it swaps positions with the parent. This upward adjustment continues until the property holds, a process known as <strong>heapify-up</strong>.</li>
+        <li><strong>Deletion:</strong> Standard extractions remove the item at the root node. The root node is replaced by the last element at the bottom of the tree, and the last slot is dropped. The new root is then compared with its children and swapped with the largest child (in a max heap) or smallest child (in a min heap). This downward adjustment continues until the property holds, a process known as <strong>heapify-down</strong>.</li>
+    </ul>
+
+    <h3>Primary Applications</h3>
+    <ul>
+        <li>Efficient implementations of <strong>Priority Queues</strong></li>
+        <li>The <strong>Heap Sort</strong> algorithm, which guarantees O(n log n) sorting bounds</li>
+        <li><strong>CPU and Job Scheduling</strong> architectures within operating systems</li>
+        <li>Graph routing optimizations like <strong>Dijkstra's Shortest Path</strong> algorithm</li>
+        <li>Continuous tracking for minimum or maximum threshold bounds</li>
+    </ul>
+
+    <!-- Section 7 -->
+    <h2>7. Define a graph and explain graph terminology and representation.</h2>
+    <p>A <strong>Graph</strong> is a non-linear data structure comprising a finite set of nodes called <strong>Vertices (V)</strong> connected by links called <strong>Edges (E)</strong>. It is mathematically formalized as <code>G = (V, E)</code>.</p>
+
+    <h3>Contextual Example Graph</h3>
+    <div class="tree-diagram" style="text-align: left; padding-left: 40px;">
+A ----- B
+
+|       |
+C ----- D</div>
+    <ul>
+        <li><strong>Vertices Configuration (V):</strong> <code>{A, B, C, D}</code></li>
+        <li><strong>Edges Configuration (E):</strong> <code>{(A,B), (A,C), (B,D), (C,D)}</code></li>
+    </ul>
+
+    <h3>Essential Graph Terminology</h3>
+    <ul>
+        <li><strong>Vertex:</strong> An individual data node within the graph framework.</li>
+        <li><strong>Edge:</strong> A connecting link or relationship pipeline between two distinct vertices.</li>
+        <li><strong>Adjacent Vertices:</strong> A pair of vertices directly joined together by an edge.</li>
+        <li><strong>Degree:</strong> The total count of structural edges directly incident to a specific vertex.</li>
+        <li><strong>Path:</strong> A sequential route of adjacent vertices leading from a starting node to a target node.</li>
+        <li><strong>Cycle:</strong> A closed path routing sequence that begins and terminates at the exact same vertex.</li>
+        <li><strong>Directed Graph:</strong> A graph where every edge possesses a mandatory traversal direction (represented by arrows).</li>
+        <li><strong>Undirected Graph:</strong> A graph where edges are completely bidirectional without directional constraints.</li>
+        <li><strong>Weighted Graph:</strong> A graph where each edge contains an associated numerical value, cost, distance, or weight factor.</li>
+        <li><strong>Connected Graph:</strong> A graph where a valid path exists between every single pair of vertices.</li>
+    </ul>
+
+    <h3>Structural Graph Representations</h3>
+
+    <h3>1. Adjacency Matrix</h3>
+    <p>A static 2D grid array of size <code>V &times; V</code> where cells contain boolean flags or weights showing if an edge directly spans from one vertex index to another.</p>
+    <pre>
+    A B C D
+A   0 1 1 0
+B   1 0 0 1
+C   1 0 0 1
+D   0 1 1 0</pre>
+    <div class="complexity">Space Complexity footprint: O(V²)</div>
+
+    <h3>2. Adjacency List</h3>
+    <p>An array of linked chains or arrays where every element index maps to a unique vertex, and its associated sequence tracks all its immediate neighbors.</p>
+    <pre>
+A: B, C
+B: A, D
+C: A, D
+D: B, C</pre>
+    <div class="complexity">Space Complexity footprint: O(V + E)</div>
+    <!-- Section 8 -->
+    <h2>8. Explain BFS and DFS graph traversal with an example.</h2>
+    <p>Graph traversal means visiting all the vertices in a graph systematically. The two fundamental traversal strategies are <strong>Breadth-First Search (BFS)</strong> and <strong>Depth-First Search (DFS)</strong>.</p>
+
+    <h3>Example Graph Structure</h3>
+    <div class="tree-diagram">
+        A
+       / \
+      B   C
+     / \   \
+    D   E   F</div>
+
+    <h3>Breadth-First Search (BFS)</h3>
+    <p>BFS explores the graph level by level, visiting all neighbors of a node before moving to the next level of nodes.</p>
+    <div class="result-box">BFS Traversal Order (starting from A): A B C D E F</div>
+
+    <pre>
+BFS(start)
+{
+    create an empty queue;
+    mark start as visited;
+    insert start into queue;
+
+    while queue is not empty
+    {
+        vertex = delete from queue;
+        visit(vertex);
+
+        for each adjacent vertex
+        {
+            if it is not visited
+            {
+                mark it visited;
+                insert it into queue;
+            }
+        }
+    }
+}</pre>
+    <p><strong>Primary Applications of BFS:</strong></p>
+    <ul>
+        <li>Finding the shortest path in an unweighted graph</li>
+        <li>Network broadcasting and peer-to-peer network routing</li>
+        <li>Level-wise searching and web crawling</li>
+    </ul>
+
+    <h3>Depth-First Search (DFS)</h3>
+    <p>DFS explores as deeply as possible along each branch before backtracking to explore alternative paths.</p>
+    <div class="result-box">DFS Traversal Order (starting from A): A B D E C F</div>
+
+    <pre>
+DFS(vertex)
+{
+    mark vertex as visited;
+    visit(vertex);
+
+    for each adjacent vertex
+    {
+        if it is not visited
+            DFS(adjacent vertex);
+    }
+}</pre>
+    <p><strong>Primary Applications of DFS:</strong></p>
+    <ul>
+        <li>Cycle detection in directed and undirected graphs</li>
+        <li>Pathfinding and maze-solving algorithms</li>
+        <li>Topological sorting for scheduling dependency-based tasks</li>
+    </ul>
+
+    <div class="complexity">
+        <p>Complexity Analysis for both BFS and DFS:</p>
+        <ul>
+            <li><strong>Time Complexity:</strong> O(V + E) where V is the number of vertices and E is the number of edges.</li>
+            <li><strong>Space Complexity:</strong> O(V) to store the visited array and the auxiliary queue/stack.</li>
+        </ul>
+    </div>
+
+    <!-- Section 9 -->
+    <h2>9. Explain selection sort with algorithm and example.</h2>
+    <p><strong>Selection Sort</strong> is an in-place comparison-based sorting algorithm. It conceptually divides the array into a sorted part at the front and an unsorted part at the back. It repeatedly scans the unsorted section to find the minimum element and swaps it into its correct position at the boundary.</p>
+
+    <h3>Tracing Example</h3>
+    <p>Initial Array: <code>64 25 12 22 11</code></p>
+    <ul>
+        <li><strong>First Pass:</strong> The smallest element found in the entire array is 11. Swap 11 with the first element (64).<br>Array state: <code>11 25 12 22 64</code></li>
+        <li><strong>Second Pass:</strong> Look for the minimum in the remaining unsorted section (25 to 64). The smallest is 12. Swap 12 with 25.<br>Array state: <code>11 12 25 22 64</code></li>
+        <li><strong>Third Pass:</strong> Look for the minimum in the remaining section (25 to 64). The smallest is 22. Swap 22 with 25.<br>Array state: <code>11 12 22 25 64</code></li>
+        <li><strong>Fourth Pass:</strong> The remaining elements are already in sorted relative positions. No more swaps required.<br>Final Array state: <code>11 12 22 25 64</code></li>
+    </ul>
+
+    <h3>Algorithm</h3>
+    <pre>
+SelectionSort(A, n)
+{
+    for i = 0 to n - 2
+    {
+        min = i;
+
+        for j = i + 1 to n - 1
+        {
+            if A[j] &lt; A[min]
+                min = j;
+        }
+
+        swap(A[i], A[min]);
+    }
+}</pre>
+
+    <div class="complexity">
+        <p>Time Complexities:</p>
+        <ul>
+            <li>Best Case Complexity: O(n²)</li>
+            <li>Average Case Complexity: O(n²)</li>
+            <li>Worst Case Complexity: O(n²)</li>
+        </ul>
+    </div>
+
+    <h3>Evaluation</h3>
+    <ul>
+        <li><strong>Advantages:</strong> Simple to understand, uses zero extra memory (in-place execution), and performs a maximum of O(n) swaps (highly efficient when writes are expensive).</li>
+        <li><strong>Disadvantage:</strong> Highly inefficient for large datasets due to its quadratic time growth complexity.</li>
+    </ul>
+
+    <!-- Section 10 -->
+    <h2>10. Explain applications of trees.</h2>
+    <p>Tree data structures are highly useful across computer science because they establish non-linear, hierarchical relationships and optimize search and sort intervals. Key application areas include:</p>
+
+    <ol style="padding-left: 20px; line-height: 1.8;">
+        <li><strong>File Systems:</strong> Operating systems organize files and folders within a multi-level tree hierarchy.</li>
+        <li><strong>Database Indexing:</strong> B-Trees and B+ Trees are used extensively within relational database indexes to manage disk reads and perform lightning-fast queries.</li>
+        <li><strong>Efficient Searching:</strong> Self-balancing Binary Search Trees (such as AVL trees and Red-Black trees) guarantee O(log n) boundary search limits.</li>
+        <li><strong>Sorting:</strong> Generating an Inorder traversal sequence from a valid Binary Search Tree outputs sorted data collections naturally.</li>
+        <li><strong>Expression Evaluation:</strong> Abstract syntax trees or expression trees are built by compilers to parse and calculate algebraic equations.</li>
+        <li><strong>Compiler Design:</strong> Parsing engines utilize parse trees and syntax trees to validate source code structurally against programmatic rules.</li>
+        <li><strong>Artificial Intelligence & Machine Learning:</strong> Decision Trees are built for complex data classification, branching paths, and analytical predictive forecasting.</li>
+        <li><strong>Data Compression:</strong> Huffman Trees are used to generate variable-length prefix codes for lossless data compression techniques.</li>
+        <li><strong>Priority Queues:</strong> Heaps are used to build priority queues where quick tracking of minimum or maximum records is required.</li>
+        <li><strong>Game Development:</strong> Evaluation engines construct game trees to model candidate decision moves in competitive games like Chess and Tic-Tac-Toe.</li>
+        <li><strong>Web Documents:</strong> Browsers evaluate and construct a tree framework out of raw markup text using the DOM (Document Object Model) for HTML and XML files.</li>
+        <li><strong>Network Routing:</strong> Enterprise routers implement minimum spanning trees to optimize path routing and prevent packet loops.</li>
+    </ol>
+    </body>
 </html>
